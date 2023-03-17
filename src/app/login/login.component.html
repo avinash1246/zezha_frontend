@@ -1,0 +1,17 @@
+<mat-card class="login-card">
+  <form [formGroup]="form" #editform (ngSubmit)="editForm(editform1)">
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" name="email" formControlName="username" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" name="password" formControlName="password" required>
+    </mat-form-field>
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+    <button mat-raised-button color="primary" type="submit">Login </button>
+    <div class="signup-link">
+        <span>Don't have an account? </span>
+        <a mat-button routerLink="/registration" routerLinkActive="active" color="accent">Sign Up</a>
+    </div>
+  </form>
+</mat-card>

@@ -1,0 +1,81 @@
+<div class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Registration Form</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form  [formGroup]="form" #editform (ngSubmit)="editForm(editform1)">
+            <mat-form-field class="form-group">
+              <mat-label>Login Type</mat-label>
+              <mat-select required formControlName="loginType" (selectionChange)="handleSelectionChange($event)">
+                <mat-option value="legends">Legends</mat-option>
+                <mat-option value="heads">Heads</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div *ngIf="selectedType === 'legends'">
+              <mat-form-field class="form-group">
+                <input matInput placeholder="First Name" formControlName="firstName"  required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Last Name" formControlName="lastName" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Mobile Number" formControlName="mobileNo" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="email" placeholder="Email" formControlName="email" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="date" placeholder="Date of Birth" formControlName="dob"  required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <mat-label>Gender</mat-label>
+                <mat-select required formControlName="gender">
+                  <mat-option value="male">Male</mat-option>
+                  <mat-option value="female">Female</mat-option>
+                  <mat-option value="other">Other</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <mat-label>Work Status</mat-label>
+                <mat-select required formControlName="workStatus">
+                  <mat-option value="fresher">Fresher</mat-option>
+                  <mat-option value="experienced">Experienced</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+              </mat-form-field>
+              <button mat-raised-button color="primary" type="submit">Submit</button>
+            </div>
+
+            <div *ngIf="selectedType === 'heads'">
+              <mat-form-field class="form-group">
+                <input matInput placeholder="First Name" formControlName="firstName"  required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Last Name" formControlName="lastName" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Mobile Number" formControlName="mobileNo" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="email" placeholder="Email" formControlName="email" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+              </mat-form-field>
+              <mat-form-field class="form-group">
+                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+              </mat-form-field>
+              <button mat-raised-button color="primary" type="submit" routerLink="/login" routerLinkActive="active" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
+            </div>
+
+          </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

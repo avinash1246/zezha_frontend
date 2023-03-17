@@ -1,0 +1,27 @@
+<app-sidebar></app-sidebar>
+<!-- <mat-card class="login-card">
+   
+</mat-card> -->
+<mat-card [style.width.px]="cardWidth" [style.height.px]="cardHeight" style="left: 3em;bottom: -3em;  display: flex; justify-content: center; align-items: top;background-color: aliceblue;">
+    <mat-card-content style="text-align: center">
+        <mat-icon svgIcon="profileCompletion" style="font-size: 2em;"></mat-icon>
+        <h4>Avinash</h4>
+        <button mat-raised-button color="primary" type="submit" routerLink="/updateProfile" routerLinkActive="active">Update Profile </button>
+    </mat-card-content>
+</mat-card>
+
+<mat-card [style.width.px]="cardWidth1" [style.height.px]="cardHeight1" style="left: 3em;bottom: -7em;  display: flex; justify-content: center; align-items: top;background-color: beige;">
+    <mat-card-content style="text-align: center">
+        <mat-list>
+            <mat-list-item style="top: -10px;cursor:pointer;"><mat-icon svgIcon="jobs" style="font-size: 2em;"></mat-icon> Jobs</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item style="top: 10px;cursor:pointer;"><mat-icon svgIcon="companies" style="font-size: 2em;"></mat-icon> Companies</mat-list-item>
+            <!-- <mat-divider></mat-divider>
+            <mat-list-item>Item 3</mat-list-item> -->
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<!-- <mat-card class="login-card" style="top: -19em;background: beige;">
+   <h4>hello</h4>
+</mat-card>  -->
