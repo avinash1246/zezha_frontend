@@ -1,4 +1,10 @@
-<mat-card class="login-card">
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+<body>
+<div class="col-12 text-center mb-4" style="width: 11em; position: relative; left: 49em; top: 7em;"><img src="../assets/images/ZEZHA LOGOS.svg" style="width: 15em; position: relative; left: -2em; top: -5em;"></div>
+<mat-card class="login-card" style="top: -9em;">
   <form [formGroup]="form" #editform (ngSubmit)="editForm(editform1)">
     <mat-form-field>
       <input matInput placeholder="Email" type="email" name="email" formControlName="username" required>
@@ -15,3 +21,5 @@
     </div>
   </form>
 </mat-card>
+</body>
+</html>

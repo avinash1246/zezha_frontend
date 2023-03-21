@@ -30,4 +30,8 @@ export class ZezhaService {
     ExistingDetail():Observable<any>{
         return this.http.get(`${this.baseUrl}`+'updateProfileExisting');
     }
+
+    UpdateProfile(login : object):Observable<any>{
+        return this.http.post(`${this.baseUrl}`+`updateProfile`,login);
+    }
 }

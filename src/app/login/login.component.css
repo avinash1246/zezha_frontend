@@ -30,3 +30,9 @@ form {
     margin: 165px auto;
     padding: 30px;
   }
+
+  body {
+    background-image: url("/assets/images/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

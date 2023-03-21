@@ -1,7 +1,15 @@
-<mat-toolbar style="background-color: khaki;" class="example-toolbar">
-	<button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon>
-	</button>
-	<h1 class="example-app-name" style="font-family: ui-monospace;" >Welcome To Dashboard</h1>
+<mat-toolbar style="background-color: #9c27b0;" class="example-toolbar">
+	<!-- <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+	<h1 class="example-app-name" style="font-family: ui-monospace;" >Welcome</h1> -->
+	<div class="col-12 text-center mb-4" style="width: 11em; position: relative; left: 49em; top: 7em;"><img src="../assets/images/ZEZHA LOGOS.svg" style="width: 4em; position: relative; left: -47em; top: -6.8em;"></div>
+	<button mat-button [matMenuTriggerFor]="menu" style="position: relative; left: 49em;">How Does it Works</button>
+	<button mat-button [matMenuTriggerFor]="menu" style="position: relative; left: 49em;">Company</button>
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item>About</button>
+		<button mat-menu-item>Careers</button>
+		<button mat-menu-item>Blogs</button>
+	</mat-menu>
+	<mat-icon svgIcon="homeIcon" style="position: relative; left: 58em;cursor: pointer;" routerLink="/dashboard"></mat-icon>
 	<h1 class="profile" [matMenuTriggerFor]="menu" style="cursor: pointer;"><mat-icon svgIcon="profile"></mat-icon></h1>
 	<mat-menu #menu="matMenu" class="menu-overflow-hidden" x-position="before">
 		<span mat-menu-item style="position: relative; left: 4em; top: 0em;" class="profile" ><mat-icon svgIcon="profile"></mat-icon></span>

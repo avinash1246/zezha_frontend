@@ -49,6 +49,7 @@ export class SidebarComponent implements OnInit {
 
   logout(){
     this.service.Logout().subscribe(data=>{
+      console.log(data)
       this.router.navigate(['/login']);
     });
   }

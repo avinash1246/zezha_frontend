@@ -15,10 +15,6 @@ export class DashboardComponent implements OnInit {
   constructor(private service:ZezhaService,private router: Router,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer) { 
       this.matIconRegistry.addSvgIcon(
-        "profileCompletion",
-        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/profileCompletion.svg")
-      );
-      this.matIconRegistry.addSvgIcon(
         "jobs",
         this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/jobs.svg")
       );

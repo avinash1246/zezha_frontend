@@ -1,9 +1,10 @@
+<app-sidebar></app-sidebar>
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
     {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
   </button>
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="firstFormGroup"  #editform (ngSubmit)="editForm(editform1)">
         <ng-template matStepLabel>Fill out your Personal Details</ng-template>
         <mat-card style="width: 40em; height: 27em;left: 3em; top: 6em;background-color: aliceblue;">
           <mat-card-content>
@@ -62,13 +63,13 @@
                 <mat-form-field class="form-group" style="left: 2em;">
                   <mat-label>Employment Type</mat-label>
                   <mat-select required  formControlName="employment_type">
-                    <mat-option value="male">Full Time</mat-option>
-                    <mat-option value="female">Part Time</mat-option>
+                    <mat-option value="Full Time">Full Time</mat-option>
+                    <mat-option value="Part Time">Part Time</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field style="left: 12em;">
                   <mat-label>Industry Type</mat-label>
-                  <input matInput placeholder="Last name" formControlName="industry_type" required>
+                  <input matInput placeholder="Industry Type" formControlName="industry_type" required>
                 </mat-form-field>
               </div>
               <div>
@@ -92,7 +93,7 @@
     <!-- #docregion label -->
     <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
     <!-- #enddocregion label -->
-      <form [formGroup]="secondFormGroup">
+      <form [formGroup]="secondFormGroup"  #editform (ngSubmit)="editForm1(editform1)">
 
         <mat-card style="width: 40em; height: 16em;left: 3em; top: 6em;background-color: aliceblue;">
           <mat-card-content>
@@ -109,10 +110,7 @@
               </mat-form-field>
             </div>
             <div>
-              <!-- <mat-form-field style="left: 2em;">
-                <mat-label>Current City</mat-label>
-                <input matInput placeholder="Current City" formControlName="cur_city" required>
-              </mat-form-field> -->
+
               <mat-form-field style="left: 2em;">
                 <mat-label>Current City</mat-label>
                 <mat-select formControlName="cur_city">
@@ -149,9 +147,10 @@
             <div>
               <mat-form-field style="left: 2em;">
                 <mat-label>Permanent City</mat-label>
-                <input matInput placeholder="Permanent City" formControlName="per_city" required>
+                <mat-select formControlName="per_city">
+                  <mat-option *ngFor="let city of this.citiesList" [value]="city.value">{{ city.name }}</mat-option>
+                </mat-select>
               </mat-form-field>
-
 
               <mat-form-field style="left: 12em;">
                 <mat-label>Permanent Address Pincode</mat-label>
@@ -167,15 +166,7 @@
    <!-- Education Details -->
        <!-- #docregion label -->
        <mat-step [stepControl]="thirdFormGroup" label="Fill out your Education Details">
-        <!-- #enddocregion label -->
-          <form [formGroup]="thirdFormGroup">
-            <!-- <mat-card style="width: 40em; height: 16em;left: 29em; top: 3em;background-color: aliceblue;">
-              <mat-card-content> -->
-                <!-- <h4 style="color: deeppink;cursor: pointer;" (click)="openDialog()">Add Class X</h4>
-                <h4 style="color: deeppink;cursor: pointer;">Add Class XII</h4>
-                <h4 style="color: deeppink;cursor: pointer;">Add Graduation/Diploma</h4>
-                <h4 style="color: deeppink;cursor: pointer;">Add Masters/Post-Graduation</h4>
-                <h4 style="color: deeppink;cursor: pointer;">Add Doctorate/PhD</h4> -->
+          <form [formGroup]="thirdFormGroup" #editform (ngSubmit)="editForm2(editform1)">
                 <mat-accordion class="example-headers-align">
                   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
                     <mat-expansion-panel-header>
@@ -186,30 +177,51 @@
                 <div>
                   <mat-form-field style="position: relative;left: 2.5em;">
                     <mat-label>School name</mat-label>
-                    <input matInput>
-                  </mat-form-field>
-              
-                  <mat-form-field style="position: relative;left: 7.55em;">
-                    <mat-label>Board</mat-label>
-                    <input matInput >
+                    <input matInput placeholder="Velammal Matriculation Higher sec school" formControlName="tenth_school" required>
                   </mat-form-field>
 
-                  <mat-form-field style="position: relative;left: 12.5em;">
+                  <mat-form-field class="form-group" style="left: 7.5em;">
+                    <mat-label>Board</mat-label>
+                    <mat-select required  formControlName="tenth_board">
+                      <mat-option value="STATE BOARD">STATE BOARD</mat-option>
+                      <mat-option value="CBSE">CBSE</mat-option>
+                      <mat-option value="ICSE">ICSE</mat-option>
+                      <mat-option value="IB">IB</mat-option>
+                      <mat-option value="IGCSE">IGCSE</mat-option>
+                      <mat-option value="CAIE">CAIE</mat-option>
+                      <mat-option value="OTHERS">OTHERS</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="form-group" style="left: 12.5em;">
                     <mat-label>Medium</mat-label>
-                    <input matInput >
+                    <mat-select required  formControlName="tenth_medium">
+                      <mat-option value="English">English</mat-option>
+                      <mat-option value="Hindi">Hindi</mat-option>
+                      <mat-option value="Tamil">Tamil</mat-option>
+                      <mat-option value="Telugu">Telugu</mat-option>
+                      <mat-option value="Kannada">Kannada</mat-option>
+                      <mat-option value="Malayalam">Malayalam</mat-option>
+                      <mat-option value="Bengali">Bengali</mat-option>
+                      <mat-option value="Marathi">Marathi</mat-option>
+                      <mat-option value="Gujarati">Gujarati</mat-option>
+                      <mat-option value="Urdu">Urdu</mat-option>
+                      <mat-option value="Punjabi">Punjabi</mat-option>
+                      <mat-option value="Other Medium">Other Medium</mat-option>
+                    </mat-select>
                   </mat-form-field>
 
                   <mat-form-field style="position: relative;left: 17.5em;">
                     <mat-label>Marks in %</mat-label>
-                    <input matInput>
+                    <input matInput placeholder="Permanent Address Pincode" formControlName="tenth_marks" required>
                   </mat-form-field>
                 </div>
                 <div>
                   <mat-form-field class="form-group" style="left: 2.5em;">
-                    <input matInput type="date" placeholder="From"   required>
+                    <input matInput type="date" formControlName="tenth_from" required>
                   </mat-form-field>
                   <mat-form-field class="form-group" style="left: 7.5em;">
-                    <input matInput type="date" placeholder="To"  required>
+                    <input matInput type="date" placeholder="To" formControlName="tenth_to"  required>
                   </mat-form-field>
                 </div>
                 <!-- #docregion action-bar -->
@@ -228,29 +240,50 @@
                 
                     <mat-form-field style="left: 2.5em;">
                       <mat-label>School name</mat-label>
-                      <input matInput>
-                    </mat-form-field>
-                
-                    <mat-form-field style="left: 7.5em;">
-                      <mat-label>Board</mat-label>
-                      <input matInput >
+                      <input matInput placeholder="School Name" formControlName="twelth_name" required>
                     </mat-form-field>
 
-                    <mat-form-field style="left: 12.5em;">
+                    <mat-form-field class="form-group" style="left: 7.5em;">
+                      <mat-label>Board</mat-label>
+                      <mat-select required  formControlName="twelth_board">
+                        <mat-option value="STATE BOARD">STATE BOARD</mat-option>
+                        <mat-option value="CBSE">CBSE</mat-option>
+                        <mat-option value="ICSE">ICSE</mat-option>
+                        <mat-option value="IB">IB</mat-option>
+                        <mat-option value="IGCSE">IGCSE</mat-option>
+                        <mat-option value="CAIE">CAIE</mat-option>
+                        <mat-option value="OTHERS">OTHERS</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+  
+                    <mat-form-field class="form-group" style="left: 12.5em;">
                       <mat-label>Medium</mat-label>
-                      <input matInput >
+                      <mat-select required  formControlName="twelth_medium">
+                        <mat-option value="English">English</mat-option>
+                        <mat-option value="Hindi">Hindi</mat-option>
+                        <mat-option value="Tamil">Tamil</mat-option>
+                        <mat-option value="Telugu">Telugu</mat-option>
+                        <mat-option value="Kannada">Kannada</mat-option>
+                        <mat-option value="Malayalam">Malayalam</mat-option>
+                        <mat-option value="Bengali">Bengali</mat-option>
+                        <mat-option value="Marathi">Marathi</mat-option>
+                        <mat-option value="Gujarati">Gujarati</mat-option>
+                        <mat-option value="Urdu">Urdu</mat-option>
+                        <mat-option value="Punjabi">Punjabi</mat-option>
+                        <mat-option value="Other Medium">Other Medium</mat-option>
+                      </mat-select>
                     </mat-form-field>
 
                     <mat-form-field style="left: 17.5em;">
                       <mat-label>Marks in %</mat-label>
-                      <input matInput>
+                      <input matInput placeholder="Permanent Address Pincode" formControlName="twelth_mark" required>
                     </mat-form-field>
                     <div>
                       <mat-form-field class="form-group" style="left: 2.5em;">
-                        <input matInput type="date" placeholder="From"   required>
+                        <input matInput type="date" placeholder="From" formControlName="twelth_from"  required>
                       </mat-form-field>
                       <mat-form-field class="form-group" style="left: 7.5em;">
-                        <input matInput type="date" placeholder="To"  required>
+                        <input matInput type="date" placeholder="To" formControlName="twelth_to" required>
                       </mat-form-field>
                     </div>
                 
@@ -269,29 +302,31 @@
                 
                     <mat-form-field style="left: 2.5em;">
                       <mat-label>College name</mat-label>
-                      <input matInput>
+                      <input matInput placeholder="Panimalar Engineering College" formControlName="ug_college" required>
                     </mat-form-field>
-                
-                    <mat-form-field style="left: 7.5em;">
+
+                    <mat-form-field class="form-group" style="left: 7.5em;">
                       <mat-label>Degree</mat-label>
-                      <input matInput >
+                      <mat-select required formControlName="ug_degree" >
+                        <mat-option *ngFor="let ugdegree of ugdegrees" [value]="ugdegree.value">{{ ugdegree.name }}</mat-option>
+                      </mat-select>
                     </mat-form-field>
 
                     <mat-form-field style="left: 12.5em;">
                       <mat-label>Department</mat-label>
-                      <input matInput >
+                      <input matInput placeholder="Mechanical Engineering" formControlName="ug_dept" required>
                     </mat-form-field>
 
                     <mat-form-field style="left: 17.5em;">
                       <mat-label>Marks in %</mat-label>
-                      <input matInput>
+                      <input matInput placeholder="80" formControlName="ug_mark" required>
                     </mat-form-field>
                     <div>
                       <mat-form-field class="form-group" style="left: 2.5em;">
-                        <input matInput type="date" placeholder="From"   required>
+                        <input matInput type="date" placeholder="From" formControlName="ug_from"  required>
                       </mat-form-field>
                       <mat-form-field class="form-group" style="left: 7.5em;">
-                        <input matInput type="date" placeholder="To"  required>
+                        <input matInput type="date" placeholder="To" formControlName="ug_to" required>
                       </mat-form-field>
                     </div>
                 
@@ -308,32 +343,34 @@
                       </mat-panel-title>
                     </mat-expansion-panel-header>
                 
-                    <mat-form-field>
-                      <mat-label style="left: 2.5em;">College name</mat-label>
-                      <input matInput>
+                    <mat-form-field style="left: 2.5em;">
+                      <mat-label>College name</mat-label>
+                      <input matInput placeholder="Panimalar Engineering College" formControlName="pg_college" required>
                     </mat-form-field>
-                
-                    <mat-form-field>
-                      <mat-label style="left: 7.5em;">Degree</mat-label>
-                      <input matInput >
+
+                    <mat-form-field class="form-group" style="left: 7.5em;">
+                      <mat-label>Degree</mat-label>
+                      <mat-select required formControlName="pg_degree" >
+                        <mat-option *ngFor="let pgdegree of pgdegrees" [value]="pgdegree.value">{{ pgdegree.name }}</mat-option>
+                      </mat-select>
                     </mat-form-field>
 
                     <mat-form-field style="left: 12.5em;">
                       <mat-label>Department</mat-label>
-                      <input matInput >
+                      <input matInput placeholder="Automobile" formControlName="pg_dept" required>
                     </mat-form-field>
 
                     <mat-form-field style="left: 17.5em;">
                       <mat-label>Marks in %</mat-label>
-                      <input matInput>
+                      <input matInput placeholder="80" formControlName="pg_marks" required>
                     </mat-form-field>
 
                     <div>
                       <mat-form-field class="form-group" style="left: 2.5em;">
-                        <input matInput type="date" placeholder="From"   required>
+                        <input matInput type="date" placeholder="From"  formControlName="pg_from" required>
                       </mat-form-field>
                       <mat-form-field class="form-group" style="left: 7.5em;">
-                        <input matInput type="date" placeholder="To"  required>
+                        <input matInput type="date" placeholder="To" formControlName="pg_to"  required>
                       </mat-form-field>
                     </div>
                 
@@ -343,7 +380,7 @@
                     </mat-action-row>
                   </mat-expansion-panel>
 
-                  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                  <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
                        PhD Details
@@ -352,29 +389,29 @@
                 
                     <mat-form-field style="left: 2.5em;">
                       <mat-label>College name</mat-label>
-                      <input matInput>
+                      <input matInput placeholder="Panimalar Engineering College" formControlName="phd_college" required>
                     </mat-form-field>
                 
                     <mat-form-field style="left: 7.5em;">
                       <mat-label>Degree</mat-label>
-                      <input matInput >
+                      <input matInput placeholder="PhD" formControlName="phd_degree" required>
                     </mat-form-field>
 
                     <mat-form-field style="left: 12.5em;">
                       <mat-label>Department</mat-label>
-                      <input matInput >
+                      <input matInput placeholder="" formControlName="phd_dept" required>
                     </mat-form-field>
 
                     <mat-form-field style="left: 17.5em;">
                       <mat-label>Marks in %</mat-label>
-                      <input matInput>
+                      <input matInput placeholder="80" formControlName="phd_marks" required>
                     </mat-form-field>
                     <div>
                       <mat-form-field class="form-group" style="left: 2.5em;">
-                        <input matInput type="date" placeholder="From"   required>
+                        <input matInput type="date" placeholder="From"  formControlName="phd_from" required>
                       </mat-form-field>
                       <mat-form-field class="form-group" style="left: 7.5em;">
-                        <input matInput type="date" placeholder="To"  required>
+                        <input matInput type="date" placeholder="To" formControlName="phd_to" required>
                       </mat-form-field>
                     </div>
                 
@@ -397,24 +434,224 @@
           </form>
         </mat-step>
 
-        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+        <mat-step [stepControl]="forthFormGroup" label="Fill out your Previous Employment Details">
           <!-- #enddocregion label -->
-            <form [formGroup]="secondFormGroup">
+            <form [formGroup]="forthFormGroup" #editform (ngSubmit)="editForm3(editform1)">
       
-              <mat-card style="width: 40em; height: 16em;left: 3em; top: 6em;background-color: aliceblue;">
-                <div *ngFor="let formGroup of formGroups">
-                  <form [formGroup]="formGroup">
-                    <mat-form-field>
-                      <input matInput formControlName="name" placeholder="Name">
-                    </mat-form-field>
-                    <mat-form-field>
-                      <input matInput formControlName="email" placeholder="Email">
-                    </mat-form-field>
-                    <button mat-button (click)="deleteForm(formGroup)">Delete</button>
-                  </form>
-                </div>
-                <button mat-raised-button color="primary" (click)="addForm()">Add</button>
-              </mat-card>
+              <!-- <mat-card style="width: 40em; height: 16em;left: 3em; top: 6em;background-color: aliceblue;"> -->
+                <mat-accordion class="example-headers-align">
+                  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Current Employment Details
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                      <mat-form-field style="position: relative;left: 2.5em;">
+                        <mat-label>Office Name</mat-label>
+                        <input matInput placeholder="" formControlName="cur_office" required>
+                      </mat-form-field>
+                  
+                      <mat-form-field style="position: relative;left: 7.5em;">
+                        <mat-label>Job Profile</mat-label>
+                        <input matInput placeholder="" formControlName="cur_profile" required>
+                      </mat-form-field>
+    
+                      <mat-form-field style="position: relative;left: 12.5em;">
+                        <mat-label>Technology Used</mat-label>
+                        <input matInput placeholder="Java" formControlName="cur_tech" required>
+                      </mat-form-field>
+
+                      <mat-form-field class="form-group" style="left: 17.5em;">
+                        <mat-label>Currently working</mat-label>
+                        <mat-select required  formControlName="cur_working">
+                          <mat-option value="yes">Yes</mat-option>
+                          <mat-option value="no">No</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field class="form-group" style="left: 22.5em;">
+                        <mat-label>Notice Period</mat-label>
+                        <mat-select required  formControlName="notice_period">
+                          <mat-option value="2 Months">2 Months</mat-option>
+                          <mat-option value="3 Months">3 Months</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+    
+                    </div>
+                    <div>
+                      <mat-form-field class="form-group" style="left: 2.5em;">
+                        <input matInput type="date" placeholder="From" formControlName="cur_from"  required>
+                      </mat-form-field>
+                      <mat-form-field class="form-group" style="left: 7.5em;">
+                        <input matInput type="date" placeholder="To" formControlName="cur_to" required>
+                      </mat-form-field>
+                    </div>
+                <!-- #docregion action-bar -->
+                    <mat-action-row>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                <!-- #enddocregion action-bar -->
+                  </mat-expansion-panel>
+                
+                  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Employment 1 Details
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <div>
+                      <mat-form-field style="position: relative;left: 2.5em;">
+                        <mat-label>Office Name</mat-label>
+                        <input matInput placeholder="" formControlName="emp1_office" required>
+                      </mat-form-field>
+                  
+                      <mat-form-field style="position: relative;left: 7.55em;">
+                        <mat-label>Job Profile</mat-label>
+                        <input matInput placeholder="" formControlName="emp1_profile" required>
+                      </mat-form-field>
+    
+                      <mat-form-field style="position: relative;left: 12.5em;">
+                        <mat-label>Technology Used</mat-label>
+                        <input matInput placeholder="" formControlName="emp1_tech" required>
+                      </mat-form-field>
+    
+                    </div>
+                    <div>
+                      <mat-form-field class="form-group" style="left: 2.5em;">
+                        <input matInput type="date" placeholder="From" formControlName="emp1_from"  required>
+                      </mat-form-field>
+                      <mat-form-field class="form-group" style="left: 7.5em;">
+                        <input matInput type="date" placeholder="To" formControlName="emp1_to" required>
+                      </mat-form-field>
+                    </div>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                
+                  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                       Employment 2 Details
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <div>
+                      <mat-form-field style="position: relative;left: 2.5em;">
+                        <mat-label>Office Name</mat-label>
+                        <input matInput  placeholder="" formControlName="emp2_office" required>
+                      </mat-form-field>
+                  
+                      <mat-form-field style="position: relative;left: 7.55em;">
+                        <mat-label>Job Profile</mat-label>
+                        <input matInput  placeholder="" formControlName="emp2_profile" required>
+                      </mat-form-field>
+    
+                      <mat-form-field style="position: relative;left: 12.5em;">
+                        <mat-label>Technology Used</mat-label>
+                        <input matInput  placeholder="" formControlName="emp2_tech" required>
+                      </mat-form-field>
+    
+                    </div>
+                    <div>
+                      <mat-form-field class="form-group" style="left: 2.5em;">
+                        <input matInput type="date" placeholder="From" formControlName="emp2_from"  required>
+                      </mat-form-field>
+                      <mat-form-field class="form-group" style="left: 7.5em;">
+                        <input matInput type="date" placeholder="To" formControlName="emp2_to" required>
+                      </mat-form-field>
+                    </div>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                       Employment 3 Details
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <div>
+                      <mat-form-field style="position: relative;left: 2.5em;">
+                        <mat-label>Office Name</mat-label>
+                        <input matInput  placeholder="" formControlName="emp3_office" required>
+                      </mat-form-field>
+                  
+                      <mat-form-field style="position: relative;left: 7.55em;">
+                        <mat-label>Job Profile</mat-label>
+                        <input matInput placeholder="" formControlName="emp3_prof" required>
+                      </mat-form-field>
+    
+                      <mat-form-field style="position: relative;left: 12.5em;">
+                        <mat-label>Technology Used</mat-label>
+                        <input matInput placeholder="" formControlName="emp3_tech" required>
+                      </mat-form-field>
+    
+                    </div>
+                    <div>
+                      <mat-form-field class="form-group" style="left: 2.5em;">
+                        <input matInput type="date" placeholder="From" formControlName="emp3_from"  required>
+                      </mat-form-field>
+                      <mat-form-field class="form-group" style="left: 7.5em;">
+                        <input matInput type="date" placeholder="To" formControlName="emp3_to" required>
+                      </mat-form-field>
+                    </div>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                       Employment 4 Details
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <div>
+                      <mat-form-field style="position: relative;left: 2.5em;">
+                        <mat-label>Office Name</mat-label>
+                        <input matInput placeholder="" formControlName="emp4_office" required>
+                      </mat-form-field>
+                  
+                      <mat-form-field style="position: relative;left: 7.55em;">
+                        <mat-label>Job Profile</mat-label>
+                        <input matInput placeholder="" formControlName="emp4_prof" required>
+                      </mat-form-field>
+    
+                      <mat-form-field style="position: relative;left: 12.5em;">
+                        <mat-label>Technology Used</mat-label>
+                        <input matInput placeholder="" formControlName="emp4_tech" required>
+                      </mat-form-field>
+    
+                    </div>
+                    <div>
+                      <mat-form-field class="form-group" style="left: 2.5em;">
+                        <input matInput type="date" placeholder="From" formControlName="emp4_from"  required>
+                      </mat-form-field>
+                      <mat-form-field class="form-group" style="left: 7.5em;">
+                        <input matInput type="date" placeholder="To" formControlName="emp4_to"   required>
+                      </mat-form-field>
+                    </div>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">End</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                
+                </mat-accordion>
+              <!-- </mat-card> -->
               <div>
                 <button mat-button matStepperPrevious style="left: 5em; top: 1.5em;">Back</button>
                 <button mat-button matStepperNext style="left: 5em;top: 1.5em;">Next</button>
@@ -422,9 +659,42 @@
             </form>
           </mat-step>
 
+          <mat-step [stepControl]="fifthFormGroup" label="Fill out your Project Details">
+            <!-- #enddocregion label -->
+              <form [formGroup]="fifthFormGroup" #editform (ngSubmit)="editForm4(editform1)">
+        
+                <mat-card style="width: 40em; height: 18em;left: 30em; top: 6em;background-color: aliceblue;">
+                  <mat-card-content>
+                    <div>
+                      <mat-form-field style="left: 2em;">
+                        <mat-label>Project Title</mat-label>
+                        <input matInput placeholder="Project Title" formControlName="proj_title" required>
+                      </mat-form-field>
+                      <mat-form-field  appearance="fill" style="width: 36em; left: 1.5em;">
+                        <mat-label>Project Description</mat-label>
+                        <textarea matInput formControlName="proj_desc"
+                                  cdkTextareaAutosize
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="1"
+                                  cdkAutosizeMaxRows="5"></textarea>
+                      </mat-form-field>
+                    </div>
+                    <!-- <mat-checkbox formControlName="same_address" style="position: relative;;left: 2em;" (change)="copyAddress()">Same as current address</mat-checkbox> -->
+                  </mat-card-content>
+                </mat-card>
+                <div>
+                  <button mat-button matStepperPrevious style="left: 32em; top: 1em;">Back</button>
+                  <button mat-button matStepperNext style="left: 32em;top: 1em;">Next</button>
+                </div>
+              </form>
+            </mat-step>
+
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       <p>You are now done.</p>
+      <form>
+        <input type="file" (change)="onFileSelected($event)" />
+      </form>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>

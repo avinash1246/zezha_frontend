@@ -2,6 +2,8 @@ export class bulkdatas {
     constructor() { }
     states!:any;
     cities!:any;
+    ugdegrees!:any;
+    pgdegrees!:any;
     doSomething(): void {
       console.log('Hello from MyClass!');
       //state
@@ -1020,6 +1022,83 @@ export class bulkdatas {
           // Add more states and their cities as needed
         ];
         
+        this.ugdegrees = [
+          { name: 'Bachelor of Arts (BA)', value:'Bachelor of Arts (BA)' },
+ { name: 'Bachelor of Science (BSc)', value:'Bachelor of Science (BSc)' },
+ { name: 'Bachelor of Commerce (BCom)', value:'Bachelor of Commerce (BCom)' },
+ { name: 'Bachelor of Engineering (BE)', value:'Bachelor of Engineering (BE)' },
+ { name: 'Bachelor of Technology (B.Tech)', value:'Bachelor of Technology (B.Tech)' },
+ { name: 'Bachelor of Business Administration (BBA)', value:'Bachelor of Business Administration (BBA)' },
+ { name: 'Bachelor of Computer Applications (BCA)', value:'Bachelor of Computer Applications (BCA)' },
+ { name: 'Bachelor of Architecture (BArch)', value:'Bachelor of Architecture (BArch)' },
+ { name: 'Bachelor of Education (B.Ed)', value:'Bachelor of Education (B.Ed)' },
+ { name: 'Bachelor of Pharmacy (B.Pharm)', value:'Bachelor of Pharmacy (B.Pharm)' },
+ { name: 'Bachelor of Dental Surgery (BDS)', value:'Bachelor of Dental Surgery (BDS)' },
+ { name: 'Bachelor of Medicine and Bachelor of Surgery (MBBS)', value:'Bachelor of Medicine and Bachelor of Surgery (MBBS)' },
+ { name: 'Bachelor of Ayurvedic Medicine and Surgery (BAMS)', value:'Bachelor of Ayurvedic Medicine and Surgery (BAMS)' },
+ { name: 'Bachelor of Homeopathic Medicine and Surgery (BHMS)', value:'Bachelor of Homeopathic Medicine and Surgery (BHMS)' },
+ { name: 'Bachelor of Unani Medicine and Surgery (BUMS)', value:'Bachelor of Unani Medicine and Surgery (BUMS)' },
+ { name: 'Bachelor of Science in Nursing (BSc Nursing)', value:'Bachelor of Science in Nursing (BSc Nursing)' },
+ { name: 'Bachelor of Physiotherapy (BPT)', value:'Bachelor of Physiotherapy (BPT)' },
+ { name: 'Bachelor of Occupational Therapy (BOT)', value:'Bachelor of Occupational Therapy (BOT)' },
+ { name: 'Bachelor of Optometry (B.Optom)', value:'Bachelor of Optometry (B.Optom)' },
+ { name: 'Bachelor of Veterinary Science and Animal Husbandry (B.VSc & AH)', value:'Bachelor of Veterinary Science and Animal Husbandry (B.VSc & AH)' },
+ { name: 'Bachelor of Fisheries Science (B.FSc)', value:'Bachelor of Fisheries Science (B.FSc)' },
+ { name: 'Bachelor of Fine Arts (BFA)', value:'Bachelor of Fine Arts (BFA)' },
+ { name: 'Bachelor of Journalism and Mass Communication (BJMC)', value:'Bachelor of Journalism and Mass Communication (BJMC)' },
+ { name: 'Bachelor of Design (B.Des)', value:'Bachelor of Design (B.Des)' },
+ { name: 'Bachelor of Law (LLB)', value:'Bachelor of Law (LLB)' },
+ { name: 'Bachelor of Arts and Bachelor of Law (BA LLB)', value:'Bachelor of Arts and Bachelor of Law (BA LLB)' },
+ { name: 'Bachelor of Business Administration and Bachelor of Law (BBA LLB)', value:'Bachelor of Business Administration and Bachelor of Law (BBA LLB)' },
+ { name: 'Bachelor of Hotel Management and Catering Technology (BHMCT)', value:'Bachelor of Hotel Management and Catering Technology (BHMCT)' },
+ { name: 'Bachelor of Travel and Tourism Management (BTTM)', value:'Bachelor of Travel and Tourism Management (BTTM)' },
+ { name: 'Bachelor of Event Management (BEM)', value:'Bachelor of Event Management (BEM)' },
+ { name: 'Bachelor of Mass Media and Communication (BMMC)', value:'Bachelor of Mass Media and Communication (BMMC)' },
+ { name: 'Bachelor of Library and Information Science (BLISc)', value:'Bachelor of Library and Information Science (BLISc)' },
+ { name: 'Bachelor of Social Work (BSW)', value:'Bachelor of Social Work (BSW)' },
+ { name: 'Bachelor of Physical Education (BPEd)', value:'Bachelor of Physical Education (BPEd)' },
+ { name: 'Bachelor of Performing Arts (BPA)', value:'Bachelor of Performing Arts (BPA)' },
+ { name: 'Bachelor of Film and Television Production (BFTP)', value:'Bachelor of Film and Television Production (BFTP)' },
+ { name: 'Bachelor of Animation and Multimedia (BAM)', value:'Bachelor of Animation and Multimedia (BAM)' },
+ { name: 'Bachelor of Graphic Design (BGD)', value:'Bachelor of Graphic Design (BGD)' },
+ { name: 'Bachelor of Photography (BPhot)', value:'Bachelor of Photography (BPhot)' },
+ { name: 'Bachelor of Music (BMus)', value:'Bachelor of Music (BMus)' },
+ { name: 'Bachelor of Theatre Arts (BTA)', value:'Bachelor of Theatre Arts (BTA)' },
+ { name: 'Bachelor of Philosophy (BPhilo)', value:'Bachelor of Philosophy (BPhilo)' },
+ { name: 'Bachelor of Psychology (BPsych)', value:'Bachelor of Psychology (BPsych)' },
+ { name: 'Bachelor of Economics (BEcon)', value:'Bachelor of Economics (BEcon)' },
+ { name: 'Bachelor of Business Economics (BBE)', value:'Bachelor of Business Economics (BBE)' },
+ { name: 'Bachelor of Commerce (BC)', value:'Bachelor of Commerce (BC)' },
+        ];
+
+        this.pgdegrees=[
+          { name: 'Master of Arts (MA)', value:'Master of Arts (MA)' },
+ { name: 'Master of Science (MSc)', value:'Master of Science (MSc)' },
+ { name: 'Master of Commerce (MCom)', value:'Master of Commerce (MCom)' },
+ { name: 'Master of Business Administration (MBA)', value:'Master of Business Administration (MBA)' },
+ { name: 'Master of Computer Applications (MCA)', value:'Master of Computer Applications (MCA)' },
+ { name: 'Master of Engineering (MEng)', value:'Master of Engineering (MEng)' },
+ { name: 'Master of Technology (MTech)', value:'Master of Technology (MTech)' },
+ { name: 'Master of Architecture (MArch)', value:'Master of Architecture (MArch)' },
+ { name: 'Master of Planning (MPlan)', value:'Master of Planning (MPlan)' },
+ { name: 'Master of Laws (LLM)', value:'Master of Laws (LLM)' },
+ { name: 'Master of Education (MEd)', value:'Master of Education (MEd)' },
+ { name: 'Master of Physical Education (MPEd)', value:'Master of Physical Education (MPEd)' },
+ { name: 'Master of Fine Arts (MFA)', value:'Master of Fine Arts (MFA)' },
+ { name: 'Master of Design (MDes)', value:'Master of Design (MDes)' },
+ { name: 'Master of Journalism and Mass Communication (MJMC)', value:'Master of Journalism and Mass Communication (MJMC)' },
+ { name: 'Master of Library and Information Science (MLISc)', value:'Master of Library and Information Science (MLISc)' },
+ { name: 'Master of Social Work (MSW)', value:'Master of Social Work (MSW)' },
+ { name: 'Master of Public Health (MPH)', value:'Master of Public Health (MPH)' },
+ { name: 'Master of Hospital Administration (MHA)', value:'Master of Hospital Administration (MHA)' },
+ { name: 'Master of Pharmacy (MPharm)', value:'Master of Pharmacy (MPharm)' },
+ { name: 'Master of Dental Surgery (MDS)', value:'Master of Dental Surgery (MDS)' },
+ { name: 'Master of Ayurvedic Medicine and Surgery (MAMS)', value:'Master of Ayurvedic Medicine and Surgery (MAMS)' },
+ { name: 'Master of Homeopathic Medicine and Surgery (MHMS)', value:'Master of Homeopathic Medicine and Surgery (MHMS)' },
+ { name: 'Master of Unani Medicine and Surgery (MUMS)', value:'Master of Unani Medicine and Surgery (MUMS)' },
+ { name: 'Master of Siddha Medicine (MSidd)', value:'Master of Siddha Medicine (MSidd)' },
+ { name: 'Master of Naturopathy and Yogic Science (MNYSc)', value:'Master of Naturopathy and Yogic Science (MNYSc)' },
+        ];
           
     }
 }

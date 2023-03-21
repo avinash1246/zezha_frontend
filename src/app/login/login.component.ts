@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Registration } from '../model/registration';
 import { ZezhaService } from '../service/zezha-service';
@@ -11,7 +13,13 @@ import { ZezhaService } from '../service/zezha-service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service:ZezhaService,private router: Router) { }
+  constructor(private service:ZezhaService,private router: Router,private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer) {
+      this.matIconRegistry.addSvgIcon(
+        "ZezhaTalent",
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/ZezhaTalent SVG.svg")
+      );
+  }
 
   ngOnInit(): void {
   }
