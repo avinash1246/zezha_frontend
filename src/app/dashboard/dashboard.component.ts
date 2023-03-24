@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
         this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/profileCompletion.svg")
       );
     }
+    
 
     list!:any;
   ngOnInit(): void {
