@@ -6,10 +6,11 @@
 <html lang="en">
 <head>
 </head>
-<body style=" background: #000000bf;">
+<!-- <body style="background: url('/assets/images/dashboard.svg') no-repeat center center fixed; background-size: cover;"> -->
+<body>
 <mat-card [style.width.px]="cardWidth" [style.height.px]="cardHeight" style="left: 3em;bottom: -3em;  display: flex; justify-content: center; align-items: top;background-color: aliceblue;">
     <mat-card-content style="text-align: center">
-        <mat-icon svgIcon="profileCompletion" style="font-size: 2em;"></mat-icon>
+        <mat-icon svgIcon="profileCompletion" style="width: 3em; position: relative; left: -0.1em;"></mat-icon>
         <h4>Avinash</h4>
         <button mat-raised-button color="primary" type="submit" routerLink="/updateProfile" routerLinkActive="active">Update Profile </button>
     </mat-card-content>
@@ -26,9 +27,50 @@
         </mat-list>
     </mat-card-content>
 </mat-card>
+<input type="text" placeholder="Search Here..." style="position: relative; top: -15em; left: 23em; width: 62em;"><button mat-raised-button color="primary" type="submit" style="position: relative; left: 368px; top: -240px;">Search</button>
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]" style="position: relative;top: -12em;">
+</mat-paginator>
+<table class="wide-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Employer Details</th>
+        <th>Experience Details</th>
+        <th>Skill Details</th>
+        <th>Other Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list; let i = index">
+        <td>{{i+1}}</td>
+        <td ><h5><b>Name : </b>{{item.firstName}} {{item.lastName}}</h5><br>
+             <h5><b>Email : </b>{{item.email}}</h5><br>
+             <h5><b>Mobile : </b>{{item.mobileNo}}</h5><br>
+             <h5><b>Gender : </b>{{item.gender}}</h5><br>
+             <h5><b>DOB : </b>{{item.dob}}</h5><br>
+             <h5><b>Address : </b>{{item.cur_address}} ,{{item.cur_city}} ,{{item.cur_state}} - {{item.cur_pincode}}</h5><br>
+             <h5><b>Work Status : </b>{{item.workStatus}}</h5><br>
+        </td>
+        <td ><h5><b>Industry Type : </b>{{item.industry_type}}</h5><br>
+            <h5><b>Current Company name : </b>{{item.cur_office}}</h5><br>
+            <h5><b>Designation : </b>{{item.cur_profile}}</h5><br>
+            <h5><b>Technology Used : </b>{{item.cur_tech}}</h5><br>
+            <h5><b>Notice Period : </b>{{item.notice_period}}</h5><br>
+            <h5><b>Employment Type : </b>{{item.employment_type}}</h5>
+       </td>
+        <td style="background-color: rgb(195, 175, 145);text-align: center;"><h5>{{item.skillDetails}}</h5></td>
+        <td>
+          <h5><b>Preferred Location : </b>{{item.preferredLocation}}</h5><br>
+          <button mat-raised-button style="background-color: rgba(0, 0, 0, 0.858);color: white;" type="submit" mat-raised-button
+          matTooltip="Click for more Details about {{item.firstName}} {{item.lastName}}"
+          aria-label="Button that displays a tooltip when focused or hovered over">More Details </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-footer></app-footer>
 </body>
 </html>
 
-<!-- <mat-card class="login-card" style="top: -19em;background: beige;">
-   <h4>hello</h4>
-</mat-card>  -->

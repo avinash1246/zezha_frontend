@@ -31,6 +31,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FooterComponent } from './footer/footer.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
+import { CdkTableModule } from '@angular/cdk/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +44,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     DashboardComponent,
     SidebarComponent,
     UpdateProfileComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     CdkStepperModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTooltipModule,
+    MatChipsModule,
+    CdkTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,6 +23,9 @@ form {
   
   .signup-link span {
     margin-right: 10px;
+    font-weight: 500;
+    position: relative;
+    left: 26px;
   }
 
   .login-card {
@@ -32,7 +35,46 @@ form {
   }
 
   body {
-    background-image: url("/assets/images/background.svg");
+    background-image: url("/assets/images/background1.svg");
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .gender-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  label {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    cursor: pointer;
+  }
+  
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .male, .female {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .male img, .female img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  input[type="radio"]:checked + div {
+    border: 2px solid #007bff;
+  }
+  
+  input[type="radio"]:checked + div span {
+    color: #007bff;
   }

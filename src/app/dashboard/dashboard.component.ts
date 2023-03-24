@@ -22,11 +22,17 @@ export class DashboardComponent implements OnInit {
         "companies",
         this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/companies.svg")
       );
+      this.matIconRegistry.addSvgIcon(
+        "profileCompletion",
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/profileCompletion.svg")
+      );
     }
 
+    list!:any;
   ngOnInit(): void {
-    this.service.Dashboard().subscribe(data=>{
-      
+    this.service.displayLegends().subscribe(data=>{
+      console.log(data);
+      this.list = data;
     });
 
   }

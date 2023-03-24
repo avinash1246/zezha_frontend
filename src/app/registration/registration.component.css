@@ -11,3 +11,9 @@
   button[type="submit"] {
     margin: 1rem auto;
   }
+
+  body {
+    background-image: url("/assets/images/registrationBackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

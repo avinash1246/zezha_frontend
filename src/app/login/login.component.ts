@@ -68,4 +68,14 @@ export class LoginComponent implements OnInit {
     return this.form.get('password');
   }
 
+  selectedGender!: string;
+
+  selectMale() {
+    this.selectedGender = 'male';
+  }
+
+  selectFemale() {
+    this.selectedGender = 'female';
+  }
+
 }

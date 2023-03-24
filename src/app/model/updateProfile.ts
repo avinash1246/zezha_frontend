@@ -79,5 +79,6 @@ export class UpdateProfile {
     public emp4_to!:String;
     public proj_title!:String;
     public proj_desc!:String;
+    public preferredLocation!:String;
     
 }

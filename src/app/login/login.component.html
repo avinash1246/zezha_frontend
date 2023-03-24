@@ -3,8 +3,32 @@
 <head>
 </head>
 <body>
-<div class="col-12 text-center mb-4" style="width: 11em; position: relative; left: 49em; top: 7em;"><img src="../assets/images/ZEZHA LOGOS.svg" style="width: 15em; position: relative; left: -2em; top: -5em;"></div>
-<mat-card class="login-card" style="top: -9em;">
+<div class="col-12 text-center mb-4" style="width: 11em; position: relative; left: 49em; top: 7em;"><img src="../assets/images/ZEZHA LOGOS.svg" style="width: 15em; position: relative; left: -2em; top: -8em;"></div>
+<mat-card class="login-card" style="top: -14em;width: 20em;">
+  <form [formGroup]="form" #editform (ngSubmit)="editForm(editform1)">
+<div class="gender-selection">
+  <label style="position: relative; left: -21px;">
+    <input type="radio" name="gender" value="legends" (click)="selectMale()">
+    <div class="male">
+      <img src="assets/images/employer.svg">
+      <span>Employer</span>
+    </div>
+  </label>
+  <label style="position: relative; left: 21px;">
+    <input type="radio" name="gender" value="heads" (click)="selectFemale()">
+    <div class="female">
+      <img src="assets/images/recruiter.svg">
+      <span>Recruiter</span>
+    </div>
+  </label>
+</div>
+</form>
+<div class="signup-link">
+  <span>Don't have an account? </span>
+  <a mat-button routerLink="/registration" routerLinkActive="active" color="accent" style="position: relative; left: 23px;">Sign Up</a>
+</div>
+</mat-card>
+<mat-card class="login-card" style="top: -25em;width: 20em;" *ngIf="selectedGender">
   <form [formGroup]="form" #editform (ngSubmit)="editForm(editform1)">
     <mat-form-field>
       <input matInput placeholder="Email" type="email" name="email" formControlName="username" required>
@@ -15,10 +39,7 @@
     </mat-form-field>
     <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
     <button mat-raised-button color="primary" type="submit">Login </button>
-    <div class="signup-link">
-        <span>Don't have an account? </span>
-        <a mat-button routerLink="/registration" routerLinkActive="active" color="accent">Sign Up</a>
-    </div>
+
   </form>
 </mat-card>
 </body>

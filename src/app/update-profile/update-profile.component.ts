@@ -1,17 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UpdateProfile } from '../model/updateProfile';
 import { ZezhaService } from '../service/zezha-service';
 import { bulkdatas } from '../utils/bulkdatas';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+
+export interface Fruit {
+  name: string;
+}
 
 @Component({
   selector: 'app-update-profile',
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.css']
 })
+
+
 export class UpdateProfileComponent implements OnInit {
   //[x: string]: any;
 
@@ -21,6 +29,7 @@ export class UpdateProfileComponent implements OnInit {
   fb: any;
   formGroups: any;
   editform1:UpdateProfile=new UpdateProfile();
+  file: File | undefined;
 
   constructor(private service:ZezhaService,private router: Router,public dialog: MatDialog,
     private http: HttpClient) {  }
@@ -44,23 +53,7 @@ export class UpdateProfileComponent implements OnInit {
   imageUrl!: string;
   pdfUrl!: string;
 
-  uploadFile(formData: FormData) {
-    console.log('hii')
-    console.log(formData)
-    return this.http.post('/api/upload', formData);
-  }
 
-  onFileSelected(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
-    const file: File | null = fileInput?.files?.[0] || null;
-    if (file) {
-      const formData: FormData = new FormData();
-      formData.append('file', file, file.name);
-      // send formData to your server using HttpClient
-      console.log('formData--');
-      console.log(formData)
-    }
-  }
 
   setStep(index: number) {
     this.step = index;
@@ -144,7 +137,8 @@ export class UpdateProfileComponent implements OnInit {
     employment_type: new FormControl(''),
     industry_type: new FormControl(''),
     expected_salary: new FormControl(''),
-    current_salary: new FormControl('')
+    current_salary: new FormControl(''),
+    preferredLocation: new FormControl('')
   })
 
   secondFormGroup:FormGroup=new FormGroup({
@@ -248,6 +242,7 @@ export class UpdateProfileComponent implements OnInit {
     this.editform1.industry_type=this.firstFormGroup.get('industry_type')?.value;
     this.editform1.expected_salary=this.firstFormGroup.get('expected_salary')?.value;
     this.editform1.current_salary=this.firstFormGroup.get('current_salary')?.value;
+    this.editform1.preferredLocation= this.firstFormGroup.get('preferredLocation')?.value;
     this.editformlist=this.editform1;
     sessionStorage.setItem('edititem',JSON.stringify(this.editformlist));
   }
@@ -268,6 +263,7 @@ export class UpdateProfileComponent implements OnInit {
       this.editform1.industry_type = value.industry_type;
       this.editform1.expected_salary = value.expected_salary;
       this.editform1.current_salary = value.current_salary;
+      this.editform1.preferredLocation = value.preferredLocation;
     }
     this.editformlist = this.value
     this.editform1.cur_address=this.secondFormGroup.get('cur_address')?.value;
@@ -306,6 +302,7 @@ export class UpdateProfileComponent implements OnInit {
       this.editform1.per_state=value.per_state;
       this.editform1.per_city=value.per_city;
       this.editform1.per_pincode=value.per_pincode;
+      this.editform1.preferredLocation = value.preferredLocation;
     }
     this.editform1.tenth_school=this.thirdFormGroup.get('tenth_school')?.value;
     this.editform1.tenth_board=this.thirdFormGroup.get('tenth_board')?.value;
@@ -395,6 +392,7 @@ export class UpdateProfileComponent implements OnInit {
       this.editform1.phd_degree=value.phd_degree;
       this.editform1.phd_to=value.phd_to;
       this.editform1.phd_from=value.phd_from;
+      this.editform1.preferredLocation = value.preferredLocation;
     }
     this.editform1.cur_office=this.forthFormGroup.get('cur_office')?.value;
     this.editform1.cur_profile=this.forthFormGroup.get('cur_profile')?.value;
@@ -507,6 +505,7 @@ export class UpdateProfileComponent implements OnInit {
       this.editform1.emp4_tech=value.emp4_tech;
       this.editform1.emp4_from=value.emp4_from;
       this.editform1.emp4_to=value.emp4_to;
+      this.editform1.preferredLocation = value.preferredLocation;
     }
     this.editform1.proj_title=this.fifthFormGroup.get('proj_title')?.value;
     this.editform1.proj_desc=this.fifthFormGroup.get('proj_desc')?.value;
@@ -524,5 +523,53 @@ export class UpdateProfileComponent implements OnInit {
       console.log(data);
     })
   }
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruits: Fruit[] = [
+    // {name: 'Lemon'},
+    // {name: 'Lime'},
+    // {name: 'Apple'},
+  ];
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.fruits.push({name: value.trim()});
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit: Fruit): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  onUpload() {
+    if (this.file) {
+      this.service.uploadFile(this.file).subscribe(
+        response => console.log(response),
+        error => console.log(error)
+      );
+    }
+  }
+
 
 }

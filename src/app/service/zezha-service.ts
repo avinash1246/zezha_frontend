@@ -19,8 +19,8 @@ export class ZezhaService {
         return this.http.post(`${this.baseUrl}`+`login`,login);
     }
 
-    Dashboard():Observable<any>{
-      return this.http.get(`${this.baseUrl}`+'dashboard');
+    displayLegends():Observable<any>{
+      return this.http.get(`${this.baseUrl}`+'displayLegends');
     }
 
     Logout():Observable<any>{
@@ -34,4 +34,11 @@ export class ZezhaService {
     UpdateProfile(login : object):Observable<any>{
         return this.http.post(`${this.baseUrl}`+`updateProfile`,login);
     }
+
+    uploadFile(file: File) {
+        const formData = new FormData();
+        formData.append('file', file);
+    
+        return this.http.post(`${this.baseUrl}`+`uploadResume`, formData);
+      }
 }

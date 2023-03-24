@@ -4,6 +4,61 @@
     padding: 30px;
   }
 
-    /* body {
-      background-image: #000000bf;
-    } */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #F2F2F2;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #F2F2F2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  td:first-child, th:first-child {
+    border-left: none;
+  }
+  
+  td:last-child, th:last-child {
+    border-right: none;
+  }
+  
+  td, th {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .wide-table {
+    width: 80%;
+    position: relative;
+    left: 21em;
+    top: -11em;
+  }
+
+  input {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    width: 300px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  input:focus {
+    border-color: #2196f3;
+  }
