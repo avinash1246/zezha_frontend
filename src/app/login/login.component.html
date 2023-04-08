@@ -8,14 +8,14 @@
   <form [formGroup]="form" #editform (ngSubmit)="editForm(editform1)">
 <div class="gender-selection">
   <label style="position: relative; left: -21px;">
-    <input type="radio" name="gender" value="legends" (click)="selectMale()">
+    <input type="radio" name="gender" value="legends" (click)="selectLegend()">
     <div class="male">
       <img src="assets/images/employer.svg">
       <span>Employer</span>
     </div>
   </label>
   <label style="position: relative; left: 21px;">
-    <input type="radio" name="gender" value="heads" (click)="selectFemale()">
+    <input type="radio" name="gender" value="heads" (click)="selectHead()">
     <div class="female">
       <img src="assets/images/recruiter.svg">
       <span>Recruiter</span>
@@ -34,9 +34,20 @@
       <input matInput placeholder="Email" type="email" name="email" formControlName="username" required>
     </mat-form-field>
   
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput placeholder="Password" type="password" name="password" formControlName="password" required>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
     </mat-form-field>
+
+    <!-- <ngx-recaptcha2 [siteKey]="your_site_key" (onSuccess)="handleSuccess()" (onError)="handleError()"></ngx-recaptcha2> -->
+
     <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
     <button mat-raised-button color="primary" type="submit">Login </button>
 

@@ -36,6 +36,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import { CdkTableModule } from '@angular/cdk/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MoreDetailsComponent } from './more-details/more-details.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { PostJobComponent } from './post-job/post-job.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { JobComponent } from './job/job.component';
+import { ApplyJobComponent } from './apply-job/apply-job.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +54,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SidebarComponent,
     UpdateProfileComponent,
     DialogBoxComponent,
-    FooterComponent
+    FooterComponent,
+    MoreDetailsComponent,
+    PostJobComponent,
+    JobComponent,
+    ApplyJobComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +90,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatTooltipModule,
     MatChipsModule,
     CdkTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatGridListModule,
+    MatAutocompleteModule,
+    MatCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

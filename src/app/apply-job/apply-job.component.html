@@ -1,0 +1,39 @@
+<app-sidebar></app-sidebar>
+<mat-card style="width: 60em; position: relative; left: 22em; background-color: darkseagreen;">
+  <mat-card-header>
+    <mat-card-title>{{jobDetails.jobHeadline}}</mat-card-title>
+    <mat-card-subtitle style="position: relative; left: 12px;">{{jobDetails.jobDescription}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card style="position: relative; left: -2em; width: 57em;">
+      <p style="font-size: larger; font-weight: 600;">Description of the job</p>
+      <p><strong>Employment Type :</strong> {{jobDetails.employmentType}}</p>
+      <p><strong>Role:</strong> {{jobDetails.role}}</p>
+      <p><strong>Job Description:</strong> {{jobDetails.jobDescription}}</p>
+      <p><strong>Functional Area:</strong> {{jobDetails.functionalArea}} </p>
+      <p><strong>Eduation Qualification:</strong> {{jobDetails.eduQualification}}</p>
+      <p><strong>Vacancies:</strong> {{jobDetails.vacancies}}</p>
+    </mat-card>
+
+    <mat-card style="position: relative; left: -2em; width: 57em; height: 14.5em;">
+      <h4 style="font-size: larger; font-weight: 600;">Requirements for the job</h4>
+      <p><strong>Key Skills :</strong>
+        <mat-chip-list  style="position: relative; bottom: -9px; ">
+          <mat-chip *ngFor="let skill of jobDetails.keySkills.split(',')">{{skill}}</mat-chip>
+        </mat-chip-list></p>
+      <p style="position: relative; bottom: -13px; "><strong>Experience:</strong> {{jobDetails.minYear}} - {{jobDetails.maxyear}}</p>
+      <p style="position: relative; bottom: -13px; "><strong>Candidate Profile:</strong> {{jobDetails.candidateProfile}} </p>
+      <p style="position: relative; bottom: -13px; "><strong>Salary:</strong> {{jobDetails.minSalary}} - {{jobDetails.maxSalary}} </p>
+    </mat-card>
+
+    <mat-card style="position: relative; left: -2em; width: 57em;">
+      <p style="font-size: larger; font-weight: 600;">Organisation Details</p>
+      <p><strong>Company Name :</strong> {{jobDetails.companyName}}</p>
+      <p><strong>Company Profile:</strong> {{jobDetails.companyProfile}}</p>
+      <p><strong>Company Address:</strong> {{jobDetails.companyAddress}}</p>
+    </mat-card>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="submit" style="position: relative; left: 0.9em; width: 59em;background: darkblue;">Apply Job</button>
+  </mat-card-actions>
+</mat-card>

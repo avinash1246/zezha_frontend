@@ -11,4 +11,5 @@ export class Registration {
     public password!:String;
     public confirmPassword!:String;
     public username!:String;
+    public otp!:String;
 }

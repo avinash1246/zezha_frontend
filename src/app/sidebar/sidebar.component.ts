@@ -26,7 +26,9 @@ export class SidebarComponent implements OnInit {
     );
    }
 
+   name!:any;
   ngOnInit(): void {
+    this.name = sessionStorage.getItem("name");
   }
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;

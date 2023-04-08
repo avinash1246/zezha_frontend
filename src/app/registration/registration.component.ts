@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { Registration } from '../model/registration';
 import { ZezhaService } from '../service/zezha-service';
 
@@ -15,6 +18,8 @@ export class RegistrationComponent implements OnInit {
   editform1:Registration=new Registration();
   editformlist: any;
   value: any;
+  showOtp:any;
+  message:any;
 
   handleSelectionChange(event: any) {
     if (event.value === 'legends') {
@@ -25,7 +30,8 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-  constructor(private service:ZezhaService, private _snackBar: MatSnackBar) { }
+  constructor(private service:ZezhaService, private _snackBar: MatSnackBar,private router: Router,
+    private dialog: MatDialog) { }
   ngOnInit(): void {
   }
 
@@ -39,10 +45,12 @@ export class RegistrationComponent implements OnInit {
     gender: new FormControl(''),
     workStatus: new FormControl(''),
     password: new FormControl(''),
-    confirmPassword: new FormControl('')
+    confirmPassword: new FormControl(''),
+    otp: new FormControl('')
   })
 
   editForm(editform1:any){
+    alert('hiii==')
     this.editform1= new Registration();
     this.editform1.loginType=this.LoginType!.value;
     this.editform1.firstName=this.FirstName!.value;
@@ -56,12 +64,21 @@ export class RegistrationComponent implements OnInit {
     this.editform1.confirmPassword=this.ConfirmPassword!.value;
     console.log(this.selectedType)
     this.editformlist=this.editform1;
-    if(this.editform1.loginType&&this.editform1.firstName&&this.editform1.lastName&&this.editform1.mobileNo
-      &&this.editform1.email&&this.editform1.dob&&this.editform1.gender&&this.editform1.workStatus
-      &&this.editform1.password&&this.editform1.confirmPassword){
-      sessionStorage.setItem('edititem',JSON.stringify(this.editformlist))
-      this.editProduct();
+    if(this.selectedType=="heads"){
+      if(this.editform1.loginType&&this.editform1.firstName&&this.editform1.lastName&&this.editform1.mobileNo
+        &&this.editform1.email&&this.editform1.password&&this.editform1.confirmPassword){
+        sessionStorage.setItem('edititem',JSON.stringify(this.editformlist))
+        this.editProduct();
+      }
+    }else{
+      if(this.editform1.loginType&&this.editform1.firstName&&this.editform1.lastName&&this.editform1.mobileNo
+        &&this.editform1.email&&this.editform1.dob&&this.editform1.gender&&this.editform1.workStatus
+        &&this.editform1.password&&this.editform1.confirmPassword){
+        sessionStorage.setItem('edititem',JSON.stringify(this.editformlist))
+        this.editProduct();
+      }
     }
+
   }
 
   editProduct(){
@@ -70,12 +87,47 @@ export class RegistrationComponent implements OnInit {
     this.service.Registration(JSON.parse(this.value)).subscribe(data=>{
       console.log(data);
       console.log(data.message);
+      if(data.message=="Registration Successful"){
+        this.router.navigate(['/login']);
+      }
     })
   }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
+
+  myClickFunction(){
+
+  }
+
+  myClickFunction1(){
+    const emailOtp = {
+      email: this.Email?.value,
+      otp : this.Otp?.value
+    };
+    this.service.OtpVerification(emailOtp).subscribe(data1=>{
+      console.log(data1);
+      this.message = data1.message;
+    });
+  }
+
+  openDialog() {
+    this.dialog.open(DialogBoxComponent);
+    const button = document.getElementById("myButton");
+    if (button) {
+      button.style.visibility = "hidden";
+    }
+    this.showOtp="hii";
+    const email = {
+      email: this.Email?.value
+    };
+    sessionStorage.setItem('email', this.Email?.value);
+    this.service.EmailVerification(email).subscribe(data=>{
+      console.log(data);
+    });
+  }
+
 
 
   get LoginType(){
@@ -107,6 +159,9 @@ export class RegistrationComponent implements OnInit {
   }
   get ConfirmPassword(){
     return this.form.get('confirmPassword');
+  }
+  get Otp(){
+    return this.form.get('otp');
   }
 
 }

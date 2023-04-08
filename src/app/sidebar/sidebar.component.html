@@ -13,7 +13,7 @@
 	<h1 class="profile" [matMenuTriggerFor]="menu1" style="cursor: pointer;"><mat-icon svgIcon="profile"></mat-icon></h1>
 	<mat-menu #menu1="matMenu" class="menu-overflow-hidden" x-position="before">
 		<span mat-menu-item style="position: relative; left: 4em; top: 0em;" class="profile" ><mat-icon svgIcon="profile" style="color: aliceblue;"></mat-icon></span>
-		<span style="position: relative; left: 3.5em; font-size: smaller; font-weight: 300; font-style: italic;">Hello Avinash</span>
+		<span style="position: relative; left: 3.5em; font-size: smaller; font-weight: 300; font-style: italic;">Hello {{name}}</span>
 		 <button mat-menu-item  >
 		   <mat-icon></mat-icon>
 		  <span style="position: relative; left: -25px;  font-weight: unset; font-style: normal;" (click)="logout()"><mat-icon>power_settings_new</mat-icon>LOGOUT</span>

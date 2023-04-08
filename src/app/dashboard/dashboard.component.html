@@ -8,31 +8,39 @@
 </head>
 <!-- <body style="background: url('/assets/images/dashboard.svg') no-repeat center center fixed; background-size: cover;"> -->
 <body>
-<mat-card [style.width.px]="cardWidth" [style.height.px]="cardHeight" style="left: 3em;bottom: -3em;  display: flex; justify-content: center; align-items: top;background-color: aliceblue;">
+
+  <!-- <mat-card>
+    <img src="assets/images/registrationBackground.png" style="height: 10em;">
+  </mat-card> -->
+<mat-card *ngIf="legends" [style.width.px]="cardWidth" [style.height.px]="cardHeight" style="left: 3em;bottom: -3em;  display: flex; justify-content: center; align-items: top;background-color: aliceblue;">
     <mat-card-content style="text-align: center">
         <mat-icon svgIcon="profileCompletion" style="width: 3em; position: relative; left: -0.1em;"></mat-icon>
-        <h4>Avinash</h4>
+        <h4>{{name}}</h4>
         <button mat-raised-button color="primary" type="submit" routerLink="/updateProfile" routerLinkActive="active">Update Profile </button>
     </mat-card-content>
 </mat-card>
 
-<mat-card [style.width.px]="cardWidth1" [style.height.px]="cardHeight1" style="left: 3em;bottom: -7em;  display: flex; justify-content: center; align-items: top;background-color: beige;">
+<mat-card *ngIf="heads" [style.width.px]="cardWidth" [style.height.px]="cardHeight" style="left: 3em;bottom: -3em;  display: flex; justify-content: center; align-items: top;background-color: aliceblue;">
+  <mat-card-content style="text-align: center">
+      <mat-icon svgIcon="profileCompletion" style="width: 3em; position: relative; left: -0.1em;"></mat-icon>
+      <h4>{{name}}</h4>
+      <button mat-raised-button color="primary" type="submit" routerLink="/postJob" routerLinkActive="active">Post Job </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card [style.width.px]="cardWidth1" [style.height.px]="cardHeight1" style="left: 3em;bottom: -7em;  display: flex; justify-content: center; align-items: top;background-color: beige;" >
     <mat-card-content style="text-align: center">
-        <mat-list>
-            <mat-list-item style="top: -10px;cursor:pointer;"><mat-icon svgIcon="jobs" style="font-size: 2em;"></mat-icon> Jobs</mat-list-item>
+        <mat-list *ngIf="legends">
+            <mat-list-item style="top: -10px;cursor:pointer;" routerLink="/job"><mat-icon svgIcon="jobs" style="font-size: 2em;"></mat-icon> Jobs</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item style="top: 10px;cursor:pointer;"><mat-icon svgIcon="companies" style="font-size: 2em;"></mat-icon> Companies</mat-list-item>
+            <mat-list-item style="top: 10px;cursor:pointer;" routerLink="/companies"><mat-icon svgIcon="companies" style="font-size: 2em;"></mat-icon> Companies</mat-list-item>
             <!-- <mat-divider></mat-divider>
             <mat-list-item>Item 3</mat-list-item> -->
         </mat-list>
     </mat-card-content>
 </mat-card>
-<input type="text" placeholder="Search Here..." style="position: relative; top: -15em; left: 23em; width: 62em;"><button mat-raised-button color="primary" type="submit" style="position: relative; left: 368px; top: -240px;">Search</button>
-<mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]" style="position: relative;top: -12em;">
-</mat-paginator>
-<table class="wide-table">
+
+<table class="wide-table" *ngIf="heads">
     <thead>
       <tr>
         <th>S.No</th>
@@ -65,12 +73,33 @@
           <h5><b>Preferred Location : </b>{{item.preferredLocation}}</h5><br>
           <button mat-raised-button style="background-color: rgba(0, 0, 0, 0.858);color: white;" type="submit" mat-raised-button
           matTooltip="Click for more Details about {{item.firstName}} {{item.lastName}}"
-          aria-label="Button that displays a tooltip when focused or hovered over">More Details </button>
+          aria-label="Button that displays a tooltip when focused or hovered over" routerLink="/moreDetails" routerLinkActive="active"
+          [queryParams]="{ mobileNo: item.mobileNo }">More Details </button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- <div style="width: 100%; height: 1500px;position: relative;left: 36em;top: -16em;">
+    <mat-carousel [autoplay]="true" [interval]="5000" style="width: 60em;">
+      <mat-carousel-slide *ngFor="let item of carouselItems">
+        <img src="{{ item }}" alt="Carousel slide {{ item }}">
+      </mat-carousel-slide>
+    </mat-carousel>
+  </div> -->
+
+  <!-- <div style=" height: 9em; width: 0em; position: relative; left: 36em; top: -16em;">
+    <mat-carousel [autoplay]="true" [interval]="5000" style="width: 60em;">
+      <mat-carousel-slide *ngFor="let item of carouselItems">
+        <img src="{{ item }}" alt="Carousel slide {{ item }}" style="object-fit: cover; width: 100%; height: 100%;">
+      </mat-carousel-slide>
+    </mat-carousel>
+  </div> -->
+
+
+
+
   <app-footer></app-footer>
 </body>
 </html>
-
+<!-- <mat-spinner></mat-spinner> -->

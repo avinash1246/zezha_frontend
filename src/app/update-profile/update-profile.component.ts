@@ -46,6 +46,7 @@ export class UpdateProfileComponent implements OnInit {
   selectedCities!:any;
   editformlist: any;
   value: any;
+  value1: any;
   step = 0;
 
   imageFile!: File;
@@ -69,7 +70,11 @@ export class UpdateProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.myClass = new bulkdatas();
-    this.service.ExistingDetail().subscribe(data=>{
+    var activeObj3 = {
+      "username" : sessionStorage.getItem('username')
+    }
+    var json = JSON.stringify(activeObj3);
+    this.service.ExistingDetail(JSON.parse(json)).subscribe(data=>{
       console.log(data.workStatus);
       const dobParts = data.dob.split('-');
       const dobISO = `${dobParts[2]}-${dobParts[1]}-${dobParts[0]}`;
@@ -229,6 +234,10 @@ export class UpdateProfileComponent implements OnInit {
     proj_desc: new FormControl('')
   })
 
+  sixthFormGroup:FormGroup=new FormGroup({
+    about_yourself: new FormControl('')
+  })
+
   editForm(editform1:any){
     this.editform1= new UpdateProfile();
     this.editform1.firstName=this.firstFormGroup.get('firstName')?.value;
@@ -324,13 +333,13 @@ export class UpdateProfileComponent implements OnInit {
     this.editform1.ug_to=this.thirdFormGroup.get('ug_to')?.value;
     this.editform1.pg_college=this.thirdFormGroup.get('pg_college')?.value;
     this.editform1.pg_dept=this.thirdFormGroup.get('pg_dept')?.value;
-    this.editform1.pg_marks=this.thirdFormGroup.get('pg_marks')?.value;
+    this.editform1.pg_mark=this.thirdFormGroup.get('pg_marks')?.value;
     this.editform1.pg_degree=this.thirdFormGroup.get('pg_degree')?.value;
     this.editform1.pg_to=this.thirdFormGroup.get('pg_to')?.value;
     this.editform1.pg_from=this.thirdFormGroup.get('pg_from')?.value;
     this.editform1.phd_college=this.thirdFormGroup.get('phd_college')?.value;
     this.editform1.phd_dept=this.thirdFormGroup.get('phd_dept')?.value;
-    this.editform1.phd_marks=this.thirdFormGroup.get('phd_marks')?.value;
+    this.editform1.phd_mark=this.thirdFormGroup.get('phd_marks')?.value;
     this.editform1.phd_degree=this.thirdFormGroup.get('phd_degree')?.value;
     this.editform1.phd_to=this.thirdFormGroup.get('phd_to')?.value;
     this.editform1.phd_from=this.thirdFormGroup.get('phd_from')?.value;
@@ -382,13 +391,13 @@ export class UpdateProfileComponent implements OnInit {
       this.editform1.ug_to=value.ug_to;
       this.editform1.pg_college=value.pg_college;
       this.editform1.pg_dept=value.pg_dept;
-      this.editform1.pg_marks=value.pg_marks;
+      this.editform1.pg_mark=value.pg_marks;
       this.editform1.pg_degree=value.pg_degree;
       this.editform1.pg_to=value.pg_to;
       this.editform1.pg_from=value.pg_from;
       this.editform1.phd_college=value.phd_college;
       this.editform1.phd_dept=value.phd_dept;
-      this.editform1.phd_marks=value.phd_marks;
+      this.editform1.phd_mark=value.phd_marks;
       this.editform1.phd_degree=value.phd_degree;
       this.editform1.phd_to=value.phd_to;
       this.editform1.phd_from=value.phd_from;
@@ -400,6 +409,7 @@ export class UpdateProfileComponent implements OnInit {
     this.editform1.cur_working=this.forthFormGroup.get('cur_working')?.value;
     this.editform1.notice_period=this.forthFormGroup.get('notice_period')?.value;
     this.editform1.cur_from=this.forthFormGroup.get('cur_from')?.value;
+    this.editform1.cur_to=this.forthFormGroup.get('cur_to')?.value;
     this.editform1.emp1_office=this.forthFormGroup.get('emp1_office')?.value;
     this.editform1.emp1_profile=this.forthFormGroup.get('emp1_profile')?.value;
     this.editform1.emp1_tech=this.forthFormGroup.get('emp1_tech')?.value;
@@ -468,13 +478,13 @@ export class UpdateProfileComponent implements OnInit {
       this.editform1.ug_to=value.ug_to;
       this.editform1.pg_college=value.pg_college;
       this.editform1.pg_dept=value.pg_dept;
-      this.editform1.pg_marks=value.pg_marks;
+      this.editform1.pg_mark=value.pg_marks;
       this.editform1.pg_degree=value.pg_degree;
       this.editform1.pg_to=value.pg_to;
       this.editform1.pg_from=value.pg_from;
       this.editform1.phd_college=value.phd_college;
       this.editform1.phd_dept=value.phd_dept;
-      this.editform1.phd_marks=value.phd_marks;
+      this.editform1.phd_mark=value.phd_marks;
       this.editform1.phd_degree=value.phd_degree;
       this.editform1.phd_to=value.phd_to;
       this.editform1.phd_from=value.phd_from;
@@ -511,13 +521,108 @@ export class UpdateProfileComponent implements OnInit {
     this.editform1.proj_desc=this.fifthFormGroup.get('proj_desc')?.value;
     this.editformlist=this.editform1;
     sessionStorage.setItem('edititem4',JSON.stringify(this.editformlist));
-    this.editProduct();
+    //this.editProduct();
   }
+
+  editForm5(editform1:any){
+    const data = this.fruits;
+    const names = data.map((obj) => obj.name);
+    const result = names.join(", ");
+    console.log(result);
+    this.editform1= new UpdateProfile();
+    const parsedValue =sessionStorage.getItem('edititem4');
+    if (parsedValue !== null) {
+      const value = JSON.parse(parsedValue);
+      this.editform1.firstName = value.firstName;
+      this.editform1.lastName = value.lastName;
+      this.editform1.mobileNo = value.mobileNo;
+      this.editform1.email = value.email;
+      this.editform1.dob = value.dob;
+      this.editform1.gender = value.gender;
+      this.editform1.workStatus = value.workStatus;
+      this.editform1.employment_type = value.employment_type;
+      this.editform1.industry_type = value.industry_type;
+      this.editform1.expected_salary = value.expected_salary;
+      this.editform1.current_salary = value.current_salary;
+      this.editform1.cur_address=value.cur_address;
+      this.editform1.cur_state=value.cur_state;
+      this.editform1.cur_city=value.cur_city;
+      this.editform1.cur_pincode=value.cur_pincode;
+      this.editform1.per_address=value.per_address;
+      this.editform1.per_state=value.per_state;
+      this.editform1.per_city=value.per_city;
+      this.editform1.per_pincode=value.per_pincode;
+      this.editform1.tenth_school=value.tenth_school;
+      this.editform1.tenth_board=value.tenth_board;
+      this.editform1.tenth_medium=value.tenth_medium;
+      this.editform1.tenth_marks=value.tenth_marks;
+      this.editform1.tenth_from=value.tenth_from;
+      this.editform1.tenth_to=value.per_ptenth_toincode;
+      this.editform1.twelth_name=value.twelth_name;
+      this.editform1.twelth_board=value.twelth_board;
+      this.editform1.twelth_medium=value.twelth_medium;
+      this.editform1.twelth_mark=value.twelth_mark;
+      this.editform1.twelth_from=value.twelth_from;
+      this.editform1.twelth_to=value.twelth_to;
+      this.editform1.ug_college=value.ug_college;
+      this.editform1.ug_degree=value.ug_degree;
+      this.editform1.ug_dept=value.ug_dept;
+      this.editform1.ug_mark=value.ug_mark;
+      this.editform1.ug_from=value.ug_from;
+      this.editform1.ug_to=value.ug_to;
+      this.editform1.pg_college=value.pg_college;
+      this.editform1.pg_dept=value.pg_dept;
+      this.editform1.pg_mark=value.pg_marks;
+      this.editform1.pg_degree=value.pg_degree;
+      this.editform1.pg_to=value.pg_to;
+      this.editform1.pg_from=value.pg_from;
+      this.editform1.phd_college=value.phd_college;
+      this.editform1.phd_dept=value.phd_dept;
+      this.editform1.phd_mark=value.phd_marks;
+      this.editform1.phd_degree=value.phd_degree;
+      this.editform1.phd_to=value.phd_to;
+      this.editform1.phd_from=value.phd_from;
+
+      this.editform1.cur_office=value.cur_office;
+      this.editform1.cur_profile=value.cur_profile;
+      this.editform1.cur_tech=value.cur_tech;
+      this.editform1.cur_working=value.cur_working;
+      this.editform1.notice_period=value.notice_period;
+      this.editform1.cur_from=value.cur_from;
+      this.editform1.emp1_office=value.emp1_office;
+      this.editform1.emp1_profile=value.emp1_profile;
+      this.editform1.emp1_tech=value.emp1_tech;
+      this.editform1.emp1_from=value.emp1_from;
+      this.editform1.emp1_to=value.emp1_to;
+      this.editform1.emp2_office=value.emp2_office;
+      this.editform1.emp2_profile=value.emp2_profile;
+      this.editform1.emp2_tech=value.emp2_tech;
+      this.editform1.emp2_from=value.emp2_from;
+      this.editform1.emp2_to=value.emp2_to;
+      this.editform1.emp3_office=value.emp3_office;
+      this.editform1.emp3_prof=value.emp3_prof;
+      this.editform1.emp3_tech=value.emp3_tech;
+      this.editform1.emp3_from=value.emp3_from;
+      this.editform1.emp3_to=value.emp3_to;
+      this.editform1.emp4_office=value.emp4_office;
+      this.editform1.emp4_prof=value.emp4_prof;
+      this.editform1.emp4_tech=value.emp4_tech;
+      this.editform1.emp4_from=value.emp4_from;
+      this.editform1.emp4_to=value.emp4_to;
+      this.editform1.preferredLocation = value.preferredLocation;
+      this.editform1.proj_title=value.proj_title;
+      this.editform1.proj_desc=value.proj_desc;
+    }
+    this.editform1.skillDetails = result;
+    this.editform1.aboutYourself = this.sixthFormGroup.get('about_yourself')?.value;
+    this.editformlist=this.editform1;
+    sessionStorage.setItem('edititem5',JSON.stringify(this.editformlist));
+    this.editProduct();
     
-  
+  }
 
   editProduct(){
-    this.value=sessionStorage.getItem('edititem4');
+    this.value=sessionStorage.getItem('edititem5');
     console.log(JSON.stringify(this.value))
     this.service.UpdateProfile(JSON.parse(this.value)).subscribe(data=>{
       console.log(data);
@@ -558,8 +663,34 @@ export class UpdateProfileComponent implements OnInit {
     }
   }
 
+  // onFileSelected(event: any) {
+  //   this.file = event.target.files[0];
+  // }
+
   onFileSelected(event: any) {
-    this.file = event.target.files[0];
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    this.uploadImage(formData);
+  }
+
+  uploadImage(formData: FormData) {
+    this.http.post('http://localhost:8081/zezha/uploadImage', formData).subscribe((response: any) => {
+      console.log(response); // Handle the response from the server
+    });
+  }
+
+  onFileSelected1(event: any) {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('resume', file);
+    this.uploadImage1(formData);
+  }
+
+  uploadImage1(formData: FormData) {
+    this.http.post('http://localhost:8081/zezha/uploadResumeFile', formData).subscribe((response: any) => {
+      console.log(response); // Handle the response from the server
+    });
   }
 
   onUpload() {

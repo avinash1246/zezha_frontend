@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
+
+
   
   // username: any;
   // password: any;
@@ -35,11 +37,14 @@ export class LoginComponent implements OnInit {
   editformlist: any;
   value:any;
   errorMessage! : String;
+  hide = true;
 
   editForm(editform1:any){
     this.editform1= new Registration();
+    sessionStorage.setItem('username',this.Username!.value);
     this.editform1.username=this.Username!.value;
     this.editform1.password=this.Password!.value;
+    this.editform1.loginType = this.selectedGender;
     this.editformlist=this.editform1;
     if(this.editform1.username&&this.editform1.password){
       sessionStorage.setItem('edititem',JSON.stringify(this.editformlist))
@@ -49,14 +54,18 @@ export class LoginComponent implements OnInit {
 
   editProduct(){
     this.value=sessionStorage.getItem('edititem');
+    console.log(this.value);
     console.log(JSON.stringify(this.value))
     this.service.Login(JSON.parse(this.value)).subscribe(data=>{
       console.log(data);
       console.log(data.message);
       if (data.message === 'Login Successful') {
+        console.log(data.firstName);
+        sessionStorage.setItem("name",data.firstName);
+        sessionStorage.setItem("loginType",data.loginType)
         this.router.navigate(['/dashboard']);
       } else {
-        this.errorMessage = 'Incorrect password. Please try again.';
+        this.errorMessage = data.message;
       }
     })
   }
@@ -70,12 +79,13 @@ export class LoginComponent implements OnInit {
 
   selectedGender!: string;
 
-  selectMale() {
-    this.selectedGender = 'male';
+  selectLegend() {
+    this.selectedGender = 'legends';
   }
 
-  selectFemale() {
-    this.selectedGender = 'female';
+  selectHead() {
+    this.selectedGender = 'heads';
   }
+
 
 }

@@ -676,18 +676,10 @@
                         <mat-label>Project Title</mat-label>
                         <input matInput placeholder="Project Title" formControlName="proj_title" required>
                       </mat-form-field>
-                      <!-- <mat-form-field  appearance="fill" style="width: 36em; left: 1.5em;">
-                        <mat-label>Project Description</mat-label>
-                        <textarea matInput formControlName="proj_desc"
-                                  cdkTextareaAutosize
-                                  #autosize="cdkTextareaAutosize"
-                                  cdkAutosizeMinRows="1"
-                                  cdkAutosizeMaxRows="5"></textarea>
-                      </mat-form-field> -->
 
-                      <mat-form-field class="example-full-width" formControlName="proj_title" required>
+                      <mat-form-field class="example-full-width"  required>
                         <mat-label>Project Description</mat-label>
-                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="proj_desc"></textarea>
                       </mat-form-field>
 
                     </div>
@@ -701,62 +693,51 @@
               </form>
             </mat-step>
 
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <mat-card style="width: 54em; left: 25em; top: 4em;background-color: cornsilk;height: 27em;">
-        <mat-card-content>
-          <mat-form-field class="example-chip-list" mat-raised-button
-          matTooltip="Click for more Skills"
-          aria-label="Button that displays a tooltip when focused or hovered over">
-            <mat-label>Skills</mat-label>
-            <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                       [removable]="removable" (removed)="remove(fruit)">
-                {{fruit.name}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input placeholder="Add Skills..."
-                     [matChipInputFor]="chipList"
-                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                     [matChipInputAddOnBlur]="addOnBlur"
-                     (matChipInputTokenEnd)="add($event)">
-            </mat-chip-list>
-          </mat-form-field>
-          <mat-form-field class="example-full-width" formControlName="proj_title" required>
-            <mat-label>Project Description</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-          </mat-form-field>
+            <mat-step label="Fill out your Other Details">
+              <!-- <ng-template matStepLabel>Done</ng-template> -->
+              <form [formGroup]="sixthFormGroup" #editform (ngSubmit)="editForm5(editform1)">
+              <mat-card style="width: 54em; left: 25em; top: 4em;background-color: cornsilk;height: 27em;">
+                <mat-card-content>
+                  <mat-form-field class="example-chip-list" mat-raised-button
+                  matTooltip="Click for more Skills"
+                  aria-label="Button that displays a tooltip when focused or hovered over">
+                    <mat-label>Skills</mat-label>
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                      <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                              [removable]="removable" (removed)="remove(fruit)">
+                        {{fruit.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="Add Skills..."
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width"  required>
+                    <mat-label>About Yourself</mat-label>
+                    <textarea matInput placeholder="Ex. It makes me feel..." formControlName="about_yourself"></textarea>
+                  </mat-form-field>
 
-          <!-- <div class="col-lg-9 col-md-9">
-            <mat-form-field>
-                <div>
-                    <mat-toolbar>
-                        <input matInput readonly name="name" />
-                        <input type="file" (change)="onFileSelected($event)">
-                        <button mat-flat-button color="primary">Browse File</button>
-                    </mat-toolbar>
-                    
+                <div class="upload-container" style="position: relative;left: -15em;">
+                  <mat-label class="upload-label">Photograph</mat-label>
+                  <input type="file" class="upload-input" (change)="onFileSelected($event)">
+                  <!-- <button mat-raised-button color="primary" class="upload-button" >Upload</button> -->
                 </div>
-          </mat-form-field>
-        </div> -->
-
-          <div>
-            <mat-label>Photograph</mat-label>
-            <input type="file" (change)="onFileSelected($event)">
-            <button mat-button color="primary" (click)="onUpload()">Upload</button>
-          </div>
-          <div>
-            <mat-label>Resume</mat-label>
-            <input type="file" (change)="onFileSelected($event)">
-            <button mat-button color="primary" (click)="onUpload()">Upload</button>
-          </div> 
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-card-content>
-      </mat-card>
-
-    </mat-step>
+                <div class="upload-container"  style="position: relative; left: 15em; top: -102px;">
+                  <mat-label class="upload-label">Resume</mat-label>
+                  <input type="file" class="upload-input" (change)="onFileSelected1($event)">
+                  <!-- <button mat-raised-button color="primary" class="upload-button" >Upload</button> -->
+                </div>
+                  <!-- <p>You are now done.</p> -->
+                  <div style="position: relative; top: -3em;color: mediumblue;">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <!-- <button mat-button (click)="stepper.reset()">Finish</button> -->
+                    <button mat-button routerLink="/dashboard" routerLinkActive="active">Finish</button>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </form>
+            </mat-step>
   </mat-horizontal-stepper>

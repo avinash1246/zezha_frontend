@@ -1,0 +1,90 @@
+  .card-with-margin {
+    margin-bottom: 10px;
+  }
+
+  .container-with-padding {
+    padding-bottom: 10px;
+  }
+
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #eef3f8;
+    padding: 20px;
+  }
+
+  .job-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .job-container img {
+    height: 80px;
+    margin-right: 20px;
+  }
+
+  .job-details {
+    flex-grow: 1;
+  }
+
+  .job-details h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #0a66c2;
+  }
+      
+  .job-details h3 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #595656;
+  }
+  .job-details p {
+    margin: 25px 0;
+    font-size: 22px;
+    color: rgb(99 94 94);
+  }
+
+  .job-details ul {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .job-details ul li {
+    margin-right: 20px;
+    font-size: 16px;
+    color: rgb(17, 16, 16);
+  }
+
+  .job-apply {
+    text-align: right;
+  }
+
+  .job-apply a {
+    background-color: #4caf50;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all .3s ease;
+  }
+
+  .job-apply a:hover {
+    background-color: #3e8e41;
+  }
+
+  .job-card {
+    background-color: #f5f5f5;
+    margin: 20px;
+    padding: 20px;
+  }

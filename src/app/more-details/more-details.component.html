@@ -1,0 +1,211 @@
+<app-sidebar></app-sidebar>
+<p></p>
+<!-- <input type="text" [(ngModel)]="color" placeholder="Enter hex code"> -->
+<mat-card style="width: 95em; left: 6em;" [style.background-color]="color">
+    <mat-card-header>
+      <!-- <img src="your-image-url" style="position: absolute; top: 0; right: 0; height: 50px; width: 50px;"> -->
+      <mat-card-title>{{legendsDetails.firstName}} {{legendsDetails.lastName}}</mat-card-title>
+      <mat-card-subtitle>{{legendsDetails.dob}}</mat-card-subtitle>
+      <mat-card-subtitle>{{legendsDetails.cur_profile}}</mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Contact Details</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="position: relative; left: 13px;">
+            <p><mat-icon style="position: relative; bottom: -7px;">email</mat-icon> {{legendsDetails.email}}</p>
+            <p><mat-icon style="position: relative; bottom: -7px;">phone</mat-icon> {{legendsDetails.mobileNo}}</p>
+            <p><mat-icon style="position: relative; bottom: -7px;">location_on</mat-icon> {{legendsDetails.cur_address}}, 
+                {{legendsDetails.cur_city}}, {{legendsDetails.cur_state}}, {{legendsDetails.cur_pincode}}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Summary</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="position: relative; left: 13px;">
+            <p>{{legendsDetails.aboutYourself}}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Experience</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-accordion>
+                <mat-expansion-panel *ngIf="legendsDetails.cur_profile">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>{{legendsDetails.cur_profile}}</mat-panel-title>
+                    <mat-panel-description>{{legendsDetails.cur_office}}</mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-list>
+                    <mat-list-item>
+                      <h4 matLine>{{legendsDetails.cur_from}} - {{legendsDetails.cur_to}}</h4>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <h4 matLine>{{legendsDetails.cur_tech}}</h4>
+                    </mat-list-item>
+                </mat-list>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="legendsDetails.emp1_profile">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>{{legendsDetails.emp1_profile}}</mat-panel-title>
+                      <mat-panel-description>{{legendsDetails.emp1_office}}</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp1_from}} - {{legendsDetails.emp1_to}}</h4>
+                      </mat-list-item>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp1_profile}}- {{legendsDetails.emp1_tech}}</h4>
+                      </mat-list-item>
+                  </mat-list>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel *ngIf="legendsDetails.emp2_profile">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>{{legendsDetails.emp2_profile}}</mat-panel-title>
+                      <mat-panel-description>{{legendsDetails.emp2_office}}</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp2_from}} - {{legendsDetails.emp2_to}}</h4>
+                      </mat-list-item>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp2_profile}}- {{legendsDetails.emp2_tech}}</h4>
+                      </mat-list-item>
+                  </mat-list>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel *ngIf="legendsDetails.emp3_profile">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>{{legendsDetails.emp3_profile}}</mat-panel-title>
+                      <mat-panel-description>{{legendsDetails.emp3_office}}</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp3_from}} - {{legendsDetails.emp3_to}}</h4>
+                      </mat-list-item>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp3_profile}} - {{legendsDetails.emp3_tech}}</h4>
+                      </mat-list-item>
+                  </mat-list>
+                  </mat-expansion-panel>
+                  <mat-expansion-panel *ngIf="legendsDetails.emp4_profile">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>{{legendsDetails.emp4_profile}}</mat-panel-title>
+                      <mat-panel-description>{{legendsDetails.emp4_office}}</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp4_from}} - {{legendsDetails.emp4_to}}</h4>
+                      </mat-list-item>
+                      <mat-list-item>
+                        <h4 matLine>{{legendsDetails.emp4_profile}}- {{legendsDetails.emp4_tech}}</h4>
+                      </mat-list-item>
+                  </mat-list>
+                  </mat-expansion-panel>
+              </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Preferred Location</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-chip-list>
+              <mat-chip *ngFor="let location of legendsDetails.preferredLocation.split(',')">{{location}}</mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Education</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item *ngIf="legendsDetails.tenth_school">
+                  <h4 matLine>SSLC</h4>
+                  <span matLine>{{legendsDetails.tenth_school}}</span>
+                  <span matLine> {{legendsDetails.tenth_from}} - {{legendsDetails.tenth_to}}</span>
+                  <span matLine> {{legendsDetails.tenth_marks}}%</span>
+                </mat-list-item>
+                <mat-list-item *ngIf="legendsDetails.twelth_name">
+                    <h4 matLine>HSC</h4>
+                    <span matLine>{{legendsDetails.twelth_name}}</span>
+                    <span matLine> {{legendsDetails.twelth_from}} - {{legendsDetails.twelth_to}}</span>
+                    <span matLine> {{legendsDetails.twelth_mark}}%</span>
+                </mat-list-item>
+                <mat-list-item *ngIf="legendsDetails.ug_college">
+                    <h4 matLine>UG</h4>
+                    <span matLine>{{legendsDetails.ug_college}}</span>
+                    <span matLine>{{legendsDetails.ug_degree}}, {{legendsDetails.ug_dept}}</span>
+                    <span matLine> {{legendsDetails.ug_from}} - {{legendsDetails.ug_to}}</span>
+                    <span matLine> {{legendsDetails.ug_mark}}%</span>
+                </mat-list-item>
+                <mat-list-item *ngIf="legendsDetails.pg_college">
+                    <h4 matLine>PG</h4>
+                    <span matLine>{{legendsDetails.pg_college}}</span>
+                    <span matLine>{{legendsDetails.pg_degree}}, {{legendsDetails.pg_dept}}</span>
+                    <span matLine> {{legendsDetails.pg_from}} - {{legendsDetails.pg_to}}</span>
+                    <span matLine> {{legendsDetails.pg_mark}}%</span>
+                </mat-list-item>
+                <mat-list-item *ngIf="legendsDetails.phd_college">
+                    <h4 matLine>PhD</h4>
+                    <span matLine>{{legendsDetails.phd_college}}</span>
+                    <span matLine>{{legendsDetails.phd_degree}}, {{legendsDetails.phd_dept}}</span>
+                    <span matLine> {{legendsDetails.phd_from}} - {{legendsDetails.phd_to}}</span>
+                    <span matLine> {{legendsDetails.phd_marks}}%</span>
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Skills</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-chip-list>
+              <mat-chip *ngFor="let skill of legendsDetails.skillDetails.split(',')">{{skill}}</mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Project Details</mat-card-title>
+          <mat-card-subtitle>{{legendsDetails.proj_title}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content style="position: relative; left: 13px;">
+            <p>{{legendsDetails.proj_desc}}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <p></p>
+      <mat-card>
+        <mat-card-header>
+            <mat-card-title>Resume</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="position: relative; left: 13px;">
+            <a href="https://www.africau.edu/images/default/sample.pdf" target="_blank">https://www.africau.edu/images/default/sample.pdf</a>
+        </mat-card-content>
+      </mat-card>
+
+    </mat-card-content>
+</mat-card>

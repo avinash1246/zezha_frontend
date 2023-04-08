@@ -55,7 +55,8 @@
               <mat-form-field class="form-group">
                 <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
               </mat-form-field>
-              <button mat-raised-button color="primary" type="submit">Submit</button>
+              <!-- <button mat-raised-button color="primary" type="submit">Submit</button> -->
+              <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
             </div>
 
             <div *ngIf="selectedType === 'heads'">
@@ -71,13 +72,18 @@
               <mat-form-field class="form-group">
                 <input matInput type="email" placeholder="Email" formControlName="email" required>
               </mat-form-field>
-              <mat-form-field class="form-group">
+              <button mat-icon-button color="primary" id="myButton" style="position: relative; left: 80em; top: -70px;" type="button" (click)="openDialog()" >
+                <mat-icon>check_circle</mat-icon>
+              </button>
+
+              <mat-form-field class="form-group"  style="position: relative; top: -4em;">
                 <input matInput type="password" placeholder="Password" formControlName="password" required>
               </mat-form-field>
-              <mat-form-field class="form-group">
-                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+              <mat-form-field class="form-group"  style="position: relative; top: -4em;">
+                <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"  required>
               </mat-form-field>
-              <button mat-raised-button color="primary" type="submit" routerLink="/login" routerLinkActive="active" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
+              <!-- <button mat-raised-button color="primary" type="submit" routerLink="/login" routerLinkActive="active" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button> -->
+              <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
             </div>
 
           </form>

@@ -30,7 +30,27 @@ export class DashboardComponent implements OnInit {
     
 
     list!:any;
+    name!:any;
+    loginType!:any;
+    legends!:any;
+    heads!:any;
+    images!:any;
+
+    carouselItems = [
+      'https://picsum.photos/id/1019/1000/500',
+      'https://picsum.photos/id/1018/1000/500',
+      'https://picsum.photos/id/1015/1000/500'
+    ];
+
+    
   ngOnInit(): void {
+    this.name = sessionStorage.getItem("name");
+    this.loginType = sessionStorage.getItem("loginType");
+    if(this.loginType=='legends'){
+      this.legends = 'legends';
+    }else{
+      this.heads = 'heads';
+    }
     this.service.displayLegends().subscribe(data=>{
       console.log(data);
       this.list = data;

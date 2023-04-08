@@ -62,3 +62,23 @@
   input:focus {
     border-color: #2196f3;
   }
+
+
+  .carousel-container {
+    width: 100%;
+    height: 300px; /* set the height as per your requirement */
+    position: relative;
+  }
+  
+  mat-carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  mat-carousel-slide {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

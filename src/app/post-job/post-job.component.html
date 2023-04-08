@@ -1,0 +1,217 @@
+<app-sidebar></app-sidebar>
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+<body>
+<div class="form-container">
+    <mat-card style="background: #e4e2e3;">
+      <mat-card-header>
+        <mat-card-title>POST JOB</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form  [formGroup]="form"  #editform (ngSubmit)="editForm(editform1)">
+
+            <div>
+
+              <mat-form-field appearance="legacy" class="form-group">
+                <mat-label>Job Posting Headline</mat-label>
+                <input matInput formControlName="jobHeadline" placeholder="Use a title that best describe the role in your company">
+              </mat-form-field>
+
+              <mat-form-field class="form-group">
+                <mat-label>Employment Type</mat-label>
+                <mat-select required formControlName="employmentType">
+                  <mat-option value="Full Time">Full Time</mat-option>
+                  <mat-option value="Part Time  ">Part Time</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width"  required class="form-group">
+                <mat-label>Job Description</mat-label>
+                <textarea matInput  formControlName="jobDescription" placeholder="Outline the activities a person in this role will perform on regular basis"></textarea>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width"  required class="form-group">
+                <mat-label>Candidate Profile</mat-label>
+                <textarea matInput  formControlName="candidateProfile" placeholder="Outline the activities a person in this role will perform on regular basis"></textarea>
+              </mat-form-field>
+
+              <mat-form-field class="example-chip-list" mat-raised-button
+              matTooltip="Click for more Skills"
+              aria-label="Button that displays a tooltip when focused or hovered over" class="form-group">
+                <mat-label>Key Skills</mat-label>
+                <mat-hint>Specify the skills and press enter or comma(,) to enter more</mat-hint>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                           [removable]="removable" (removed)="remove(fruit)">
+                    {{fruit.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Add Skills..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field>
+
+              <div style="position: relative; left: 16px;bottom: -14px;">
+                <mat-label>Work Experience(Years)</mat-label><br>
+                <div style="display: inline-block;">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Min Years</mat-label>
+                      <mat-select required formControlName="minYear">
+                        <mat-option *ngFor="let year of years" [value]="year.value">{{ year.name }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  
+                  <p style="display: inline-block; margin: 0 10px;">to</p>
+                  
+                  <div style="display: inline-block;">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Max Years</mat-label>
+                      <mat-select required formControlName="maxyear">
+                        <mat-option *ngFor="let year of years" [value]="year.value">{{ year.name }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+              </div>
+
+              <div style="position: relative; left: 16px;bottom: -14px;">
+                <mat-label>Annual Salary Range</mat-label><br>
+                <div style="display: inline-block;">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Min Annual Salary</mat-label>
+                      <mat-select required formControlName="minSalary">
+                        <mat-option *ngFor="let salary of salaries" [value]="salary.value">{{ salary.name }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  
+                  <p style="display: inline-block; margin: 0 10px;">to</p>
+                  
+                  <div style="display: inline-block;">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Max Annual Salary</mat-label>
+                      <mat-select required formControlName="maxSalary">
+                        <mat-option *ngFor="let salary of salaries" [value]="salary.value">{{ salary.name }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+              </div>
+
+              <!-- <mat-form-field class="example-chip-list" mat-raised-button
+              matTooltip="Click for more Skills"
+              aria-label="Button that displays a tooltip when focused or hovered over" class="form-group">
+                <mat-label>Location</mat-label>
+                <mat-hint>Specify the Locations and press enter or comma(,) to enter more</mat-hint>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                           [removable]="removable" (removed)="remove1(location)"  formControlName="location">
+                    {{fruit.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Add Skills..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field> -->
+
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Industry" required  formControlName="industry">
+              </mat-form-field>
+
+              <mat-form-field class="form-group">
+                <mat-label>Organisation Size</mat-label>
+                <mat-select required formControlName="organisationSize">
+                  <mat-option value="0-1 Employees">0-1 Employees</mat-option>
+                  <mat-option value="2-10 Employees">2-10 Employees</mat-option>
+                  <mat-option value="11-50 Employees">11-50 Employees</mat-option>
+                  <mat-option value="51-200 Employees">51-200 Employees</mat-option>
+                  <mat-option value="501-1000 Employees">501-1000 Employees</mat-option>
+                  <mat-option value="1001-5000 Employees">1001-5000 Employees</mat-option>
+                  <mat-option value="5001-10000 Employees">5001-10000 Employees</mat-option>
+                  <mat-option value="10000+ Employees">10000+ Employees</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="form-group">
+                <mat-label>Organisation Type</mat-label>
+                <mat-select required formControlName="organisationType">
+                  <mat-option value="Public Company">Public Company</mat-option>
+                  <mat-option value="Self-Employed">Self-Employed</mat-option>
+                  <mat-option value="Government Agency">Government Agency</mat-option>
+                  <mat-option value="NonProfit">NonProfit</mat-option>
+                  <mat-option value="Sole proprietorship">Sole proprietorship</mat-option>
+                  <mat-option value="Privately held">Privately held</mat-option>
+                  <mat-option value="Partnership">Partnership</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Functional Area" required  formControlName="functionalArea"> 
+              </mat-form-field>
+
+              <mat-form-field class="form-group">
+                <mat-select required formControlName="maxSalary"  placeholder="Role">
+                    <mat-option *ngFor="let role of roles" [value]="role.value">{{ role.name }}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="form-group">
+                <input matInput placeholder="Number of Vacancies" required  formControlName="vacancies">
+              </mat-form-field>
+
+              <!-- <mat-form-field class="example-chip-list" mat-raised-button
+              matTooltip="Click for more Skills"
+              aria-label="Button that displays a tooltip when focused or hovered over" class="form-group">
+                <mat-label>Education Qualification</mat-label>
+                <mat-hint>Specify the Education Qualification and press enter or comma(,) to enter more</mat-hint>
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable1"
+                           [removable]="removable1" (removed)="remove(fruit)" formControlName="eduQualification">
+                    {{fruit.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Add Skills..."
+                         [matChipInputFor]="chipList"
+                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                         [matChipInputAddOnBlur]="addOnBlur"
+                         (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field>  -->
+
+              <mat-form-field class="form-group">
+                <input matInput placeholder="company Name" required  formControlName="companyName">
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy" class="form-group">
+                <mat-label>Company Profile</mat-label>
+                <input matInput  formControlName="companyProfile" placeholder="Mention about your company profile, things you would want to hoghlight to jobseekers">
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy" class="form-group">
+                <mat-label>Company Address</mat-label>
+                <input matInput placeholder="Add Company Address" formControlName="companyAddress">
+              </mat-form-field>
+
+              <div class="upload-container"  style="position: relative; left: -1em; top: -14px;">
+                <mat-label class="upload-label">Company Logo</mat-label>
+                <input type="file" class="upload-input" (change)="onFileSelected1($event)">
+                <!-- <button mat-raised-button color="primary" class="upload-button" >Upload</button> -->
+              </div>
+
+              <button mat-raised-button color="primary" type="submit">Submit</button>
+              <!-- <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Job Posted', 'Dismiss')">Submit</button> -->
+            </div>
+
+          </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</body>
+</html>

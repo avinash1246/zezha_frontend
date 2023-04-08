@@ -1,17 +1,15 @@
-.mat-stepper-horizontal {
-    margin-top: 8px;
+.form-container {
+    width: 80%;
+    margin: 0 auto;
   }
   
-  .mat-form-field {
-    margin-top: 16px;
+  .form-group {
+    display: block;
+    margin: 1rem;
   }
-
-  .example-chip-list {
-    width: 100%;
-  }
-
-  .example-full-width {
-    width: 100%;
+  
+  button[type="submit"] {
+    margin: 1rem auto;
   }
 
   .upload-container {
@@ -43,4 +41,9 @@
     padding: 10px 20px;
     font-weight: bold;
   }
-  
+
+  /* body {
+    background-image: url("/assets/images/registrationBackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */

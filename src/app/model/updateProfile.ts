@@ -40,13 +40,13 @@ export class UpdateProfile {
     public ug_to!:String;
     public pg_college!:String;
     public pg_dept!:String;
-    public pg_marks!:String;
+    public pg_mark!:String;
     public pg_degree!:String;
     public pg_to!:String;
     public pg_from!:String;
     public phd_college!:String;
     public phd_dept!:String;
-    public phd_marks!:String;
+    public phd_mark!:String;
     public phd_degree!:String;
     public phd_to!:String;
     public phd_from!:String;
@@ -80,5 +80,7 @@ export class UpdateProfile {
     public proj_title!:String;
     public proj_desc!:String;
     public preferredLocation!:String;
+    public skillDetails!:String;
+    public aboutYourself!:String;
     
 }
