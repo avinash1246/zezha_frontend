@@ -1,1 +1,35 @@
-<p>companies works!</p>
+<app-sidebar></app-sidebar>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Posting</title>
+
+</head>
+<body>
+	<!-- <div class="container-with-padding" *ngFor="let content of list">
+		<mat-card style="background-color: #f4faff; width: 22em; position: relative; left: 24em;height: 11em;">
+		  <h1>{{ content.message }}</h1>
+		</mat-card>
+		
+	</div> -->
+	<div class="container-with-padding" >
+		<mat-grid-list cols="3" rowHeight="200px" rowWidth="10px">
+			<mat-grid-tile *ngFor="let content of list">
+				<mat-card>
+					<mat-card-header>
+					  <div mat-card-avatar>
+						<img  style="width: 3em;" src="../assets/images/sidebarLogo.svg">
+					  </div>
+					  <mat-card-title>{{content.message}}</mat-card-title>
+					  <mat-card-subtitle>Website design and development</mat-card-subtitle>
+					</mat-card-header>
+					<mat-card-content>
+						<button mat-stroked-button color="accent" [queryParams]="{ email: content.email }" routerLink="/viewJobs" routerLinkActive="active">View Jobs</button>
+					</mat-card-content>
+				  </mat-card>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</div>
+</body>
+</html>
+<app-footer></app-footer>

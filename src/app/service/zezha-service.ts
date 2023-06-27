@@ -6,7 +6,6 @@ import { Observable } from "rxjs";
     providedIn: 'root'
 })
 export class ZezhaService {
-    //public prodid="";
     private baseUrl = 'http://localhost:8081/zezha/';
 
     constructor(private http:HttpClient) { }
@@ -72,6 +71,34 @@ export class ZezhaService {
 
     logo():Observable<any>{
         return this.http.get(`${this.baseUrl}`+'downloadImage/tbAHWTw4.jpeg');
+    }
+
+    ApplyJob(login : object):Observable<any>{
+        return this.http.post(`${this.baseUrl}`+`applyJob`,login);
+    }
+
+    DisplayJobsOnCompany(login : object):Observable<any>{
+        return this.http.post(`${this.baseUrl}`+`displayJobsOnCompanies`,login);
+    }
+
+    displayCompanies():Observable<any>{
+        return this.http.get(`${this.baseUrl}`+'displayCompanies');
+    }
+
+    ExistingData(login : object):Observable<any>{
+        return this.http.post(`${this.baseUrl}`+`updateProfileExistingData`,login);
+    }
+
+    CheckDataForResume(login : object):Observable<any>{
+        return this.http.post(`${this.baseUrl}`+`checkDataForResume`,login);
+    }
+
+    CheckMobileNoExist(mobileNo: string): Observable<any> {
+        return this.http.get(`${this.baseUrl}checkMobileNoExist?mobileNo=${mobileNo}`);
+    }
+
+    CheckEmailExist(mobileNo: string): Observable<any> {
+        return this.http.get(`${this.baseUrl}checkEmailExist?email=${mobileNo}`);
     }
 
 }

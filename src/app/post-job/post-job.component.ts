@@ -36,17 +36,20 @@ export class PostJobComponent implements OnInit {
   editform1:PostJob=new PostJob();
   LoginType!:any;
   roles!:any;
+  isLoading=true;
 
   ngOnInit(): void {
-    this.LoginType = null;
-    this.myClass = new bulkdatas();
-    this.myClass.doSomething();
-    this.years = this.myClass.years;
-    this.salaries = this.myClass.salary;
-    this.roles = this.myClass.role;
-    // this.service.logo().subscribe(data=>{
-    //   console.log(data);
-    // });
+    if(sessionStorage.getItem("name")!=null){
+      this.LoginType = null;
+      this.myClass = new bulkdatas();
+      this.myClass.doSomething();
+      this.years = this.myClass.years;
+      this.salaries = this.myClass.salary;
+      this.roles = this.myClass.role;
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
   }
 
   form:FormGroup=new FormGroup({
@@ -111,6 +114,7 @@ export class PostJobComponent implements OnInit {
     console.log(JSON.stringify(this.value))
     this.service.PostJob(JSON.parse(this.value)).subscribe(data=>{
       console.log(data);
+      this.isLoading = false;
       console.log(data.message);
       if(data.message=="Job Posted"){
         this.router.navigate(['/dashboard']);
@@ -119,15 +123,20 @@ export class PostJobComponent implements OnInit {
   }
 
   onFileSelected1(event: any) {
+    var name:any ;
     const file = event.target.files[0];
     const formData = new FormData();
-    formData.append('resume', file);
+    formData.append('image', file);
+    if(sessionStorage.getItem('username')!=null){
+      name =sessionStorage.getItem('username');
+      formData.append('myString', name);
+    }
     this.uploadImage1(formData);
   }
 
   uploadImage1(formData: FormData) {
-    this.http.post('http://localhost:8081/zezha/uploadResumeFile', formData).subscribe((response: any) => {
-      console.log(response); // Handle the response from the server
+    this.http.post('http://localhost:8081/zezha/uploadLogoFile', formData).subscribe((data: any) => {
+      console.log(data); // Handle the response from the server
     });
   }
 

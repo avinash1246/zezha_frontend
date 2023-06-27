@@ -4,6 +4,7 @@
 </head>
 <body>
 <div class="form-container">
+  <div class="overlay" *ngIf="isLoading"></div> 
     <mat-card>
       <mat-card-header>
         <mat-card-title>Registration Form</mat-card-title>
@@ -26,15 +27,28 @@
                 <input matInput placeholder="Last Name" formControlName="lastName" required>
               </mat-form-field>
               <mat-form-field class="form-group">
-                <input matInput placeholder="Mobile Number" formControlName="mobileNo" required>
+                <input matInput placeholder="Mobile Number" formControlName="mobileNo" maxlength="10" (change)="onChangeEvent($event)" required>
               </mat-form-field>
+              <div style="position: relative; top: -2em; left: 1em; color: red; font-size: small;" *ngIf="textboxValue">
+                Mobile No Already Exist, Please Login and Continue
+              </div>
               <mat-form-field class="form-group">
                 <input matInput type="email" placeholder="Email" formControlName="email" required>
               </mat-form-field>
-              <mat-form-field class="form-group">
+              <!-- <div style="position: relative; top: -2em; left: 1em; color: red; font-size: small;" class="validation-error" *ngIf="(formSubmitted || form.controls.email.touched)  && form.controls.email.errors?.email">Please enter correct email id</div><br><br> -->
+              <div style="position: relative; top: -2em; left: 1em; color: red; font-size: small;" *ngIf="emailVerification">
+                Email Id Already Exist
+              </div>
+              <button mat-stroked-button style="position: relative; left: 76em; top: -6em;" type="button" (click)="myClickFunction1()">Send OTP</button>
+              <mat-form-field class="form-group" *ngIf="showOtp" style="position: relative; top: -5em;">
+                <input matInput type="text" placeholder="OTP" pattern="[0-9]{6}" formControlName="otp" required >
+                <button mat-stroked-button color="primary" style="position: relative; left: 76em;" (click)="myClickFunction()" type="button">verify</button>
+              </mat-form-field>
+              <mat-form-field class="form-group" style="position: relative; top: -3em;">
                 <input matInput type="date" placeholder="Date of Birth" formControlName="dob"  required>
               </mat-form-field>
-              <mat-form-field class="form-group">
+
+              <mat-form-field class="form-group" style="position: relative; top: -3em;">
                 <mat-label>Gender</mat-label>
                 <mat-select required formControlName="gender">
                   <mat-option value="male">Male</mat-option>
@@ -42,21 +56,25 @@
                   <mat-option value="other">Other</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field class="form-group">
+              <mat-form-field class="form-group" style="position: relative; top: -3em;">
                 <mat-label>Work Status</mat-label>
                 <mat-select required formControlName="workStatus">
                   <mat-option value="fresher">Fresher</mat-option>
                   <mat-option value="experienced">Experienced</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field class="form-group">
+              <mat-form-field class="form-group" style="position: relative; top: -3em;">
                 <input matInput type="password" placeholder="Password" formControlName="password" required>
               </mat-form-field>
-              <mat-form-field class="form-group">
+              <span class="validation-error" *ngIf="(formSubmitted || form.controls.password.touched)  && form.controls.password.errors?.required" style="position: relative; top: -6em; left: 1em; color: red; font-size: small;">Password is required</span>
+              <span class="validation-error" *ngIf="(formSubmitted || form.controls.password.touched)  && form.controls.password.errors?.pattern" style="position: relative; top: -6em; left: 1em; color: red; font-size: small;">Please enter strong password (Should have Uppercase, lowercase, numbers & special characters)</span><br>
+              <mat-form-field class="form-group" style="position: relative; top: -5.5em;">
                 <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
               </mat-form-field>
               <!-- <button mat-raised-button color="primary" type="submit">Submit</button> -->
-              <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
+              <div *ngIf="showSumbit">
+                <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
+              </div>
             </div>
 
             <div *ngIf="selectedType === 'heads'">
@@ -67,23 +85,34 @@
                 <input matInput placeholder="Last Name" formControlName="lastName" required>
               </mat-form-field>
               <mat-form-field class="form-group">
-                <input matInput placeholder="Mobile Number" formControlName="mobileNo" required>
+                <input matInput placeholder="Mobile Number" formControlName="mobileNo" maxlength="10" (change)="onChangeEvent($event)" required>
               </mat-form-field>
+              <div style="position: relative; top: -2em; left: 1em; color: red; font-size: small;" *ngIf="textboxValue">
+                Mobile No Already Exist, Please Login and Continue
+              </div>
               <mat-form-field class="form-group">
                 <input matInput type="email" placeholder="Email" formControlName="email" required>
               </mat-form-field>
-              <button mat-icon-button color="primary" id="myButton" style="position: relative; left: 80em; top: -70px;" type="button" (click)="openDialog()" >
-                <mat-icon>check_circle</mat-icon>
-              </button>
+              <div style="position: relative; top: -2em; left: 1em; color: red; font-size: small;" *ngIf="emailVerification">
+                Email Id Already Exist
+              </div>
+              <button mat-stroked-button style="position: relative; left: 76em; top: -6em;" type="button" (click)="myClickFunction1()">Send OTP</button>
+              <mat-form-field class="form-group" *ngIf="showOtp" style="position: relative; top: -5em;">
+                <input matInput type="text" placeholder="OTP" pattern="[0-9]{6}" formControlName="otp" required >
+                <button mat-stroked-button color="primary" style="position: relative; left: 76em;" (click)="myClickFunction()" type="button">verify</button>
+              </mat-form-field>
 
               <mat-form-field class="form-group"  style="position: relative; top: -4em;">
                 <input matInput type="password" placeholder="Password" formControlName="password" required>
               </mat-form-field>
-              <mat-form-field class="form-group"  style="position: relative; top: -4em;">
+              <div class="validation-error" *ngIf="(formSubmitted || form.controls.password.touched)  && form.controls.password.errors?.required" style="position: relative; top: -5em; left: 1em; color: red; font-size: small;">Password is required</div>
+              <div class="validation-error" *ngIf="(formSubmitted || form.controls.password.touched)  && form.controls.password.errors?.pattern" style="position: relative; top: -5em; left: 1em; color: red; font-size: small;">Please enter strong password (Should have Uppercase, lowercase, numbers & special characters)</div><br>
+              <mat-form-field class="form-group"  style="position: relative; top: -7em;">
                 <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"  required>
               </mat-form-field>
-              <!-- <button mat-raised-button color="primary" type="submit" routerLink="/login" routerLinkActive="active" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button> -->
-              <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
+              <div *ngIf="showSumbit">
+                <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Registration Successful', 'Dismiss')">Submit</button>
+              </div>
             </div>
 
           </form>
@@ -92,3 +121,14 @@
   </div>
 </body>
 </html>
+<!-- <div class="spinner-container" *ngIf="isLoading">
+	<mat-spinner class="loader" ></mat-spinner>
+</div> -->
+<div class="spinner-container" *ngIf="isLoading">
+<div class="custom-spinner ">
+  <div class="spinner"></div>
+  <div class="logo"> 
+    <img src="../assets/images/ZEZHA LOGOS.svg" style="width: 2.5em;position: relative; left: -26px; top: -26px;">
+  </div>
+</div>
+</div>

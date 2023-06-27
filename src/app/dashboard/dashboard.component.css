@@ -82,3 +82,68 @@
     align-items: center;
     justify-content: center;
   }
+
+  .scroll-container {
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap; /* Ensures content stays on a single line */
+  }
+
+  .scroll-content {
+    display: inline-block; /* Ensures content flows horizontally */
+  }
+
+  .card {
+    width: 161px;
+    height: 200px;
+    background-color: lightgray;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  :root {
+    --page-margin: min(2rem, 5vw);
+    color: #444;
+  }
+  
+  section {
+    display: grid;
+    grid-template-columns: var(--page-margin) [center-start] 1fr [center-end] var(--page-margin);
+    
+    & > * {
+      grid-column: center;
+    }
+  }
+  
+  .cards-wrapper {
+    grid-column: center-start / -1;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+    overflow: auto;
+    padding-bottom: 1rem;
+    padding-right: var(--page-margin);
+    
+    .card {
+      display: grid;
+      place-content: center;
+      background-color: #d0f0ee;
+      color: #15928A;
+      font-size: 1.5rem;
+      height: 11rem;
+      min-width: 13rem;
+    }
+  }
+
+  .cards-section {
+    display: flex;
+    justify-content: center;
+  }
+  /* .outer-container {
+    overflow-x: hidden;
+  } */
+
+  /* body {
+    overflow-x: hidden;
+  } */

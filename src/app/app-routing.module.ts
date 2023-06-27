@@ -9,6 +9,12 @@ import { PostJobComponent } from './post-job/post-job.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { CompaniesComponent } from './companies/companies.component';
+import { ViewJobsComponent } from './view-jobs/view-jobs.component';
+import { AboutComponent } from './about/about.component';
+import { CareerComponent } from './career/career.component';
+import { HowDoesItWorksComponent } from './how-does-it-works/how-does-it-works.component';
+import { CreateResumeComponent } from './create-resume/create-resume.component';
+import { ViewCandidateProfileComponent } from './view-candidate-profile/view-candidate-profile.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',  pathMatch:'full'},
@@ -20,7 +26,13 @@ const routes: Routes = [
   { path:'postJob', component: PostJobComponent},
   { path:'job', component: JobComponent},
   { path:'applyJob', component: ApplyJobComponent},
-  { path:'companies', component: CompaniesComponent}
+  { path:'companies', component: CompaniesComponent},
+  { path:'viewJobs', component: ViewJobsComponent},
+  { path:'about', component: AboutComponent},
+  { path:'career', component: CareerComponent},
+  { path:'howDoesItWork', component: HowDoesItWorksComponent},
+  { path:'createResume', component: CreateResumeComponent},
+  { path:'viewProfile', component: ViewCandidateProfileComponent}
 ];
 
 @NgModule({

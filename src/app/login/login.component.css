@@ -35,7 +35,7 @@ form {
   }
 
   body {
-    background-image: url("/assets/images/background1.svg");
+    /* background-image: url("/assets/images/background1.svg"); */
     background-repeat: no-repeat;
     background-size: cover;
   }

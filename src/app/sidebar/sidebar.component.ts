@@ -53,6 +53,8 @@ export class SidebarComponent implements OnInit {
     this.service.Logout().subscribe(data=>{
       console.log(data)
       this.router.navigate(['/login']);
+      sessionStorage.removeItem("name");
+      sessionStorage.clear();
     });
   }
 

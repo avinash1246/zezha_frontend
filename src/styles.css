@@ -2,3 +2,43 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-snackbar {
+    background: #a12041;
+}
+
+/* Achieve Red Palette */
+:root {
+  --achieve-red-50: #ff7396;
+  --achieve-red-100: #eb5278;
+  --achieve-red-200: #d43f64;
+  --achieve-red-300: #c33357;
+  --achieve-red-400: #b1274a;
+  --achieve-red-500: #a12041;
+  --achieve-red-600: #951d3b;
+  --achieve-red-700: #881935;
+  --achieve-red-800: #7c152f;
+  --achieve-red-900: #6e1028;
+  --achieve-red-A100: #eb5299;
+  --achieve-red-A200: #d43f84;
+  --achieve-red-A400: #b1275c;
+  --achieve-red-A700: #881944;
+}
+
+/* Achieve Red Palette Contrast */
+:root {
+  --achieve-red-50-contrast: var(--dark-primary-text);
+  --achieve-red-100-contrast: var(--dark-primary-text);
+  --achieve-red-200-contrast: var(--dark-primary-text);
+  --achieve-red-300-contrast: var(--dark-primary-text);
+  --achieve-red-400-contrast: var(--dark-primary-text);
+  --achieve-red-500-contrast: var(--light-primary-text);
+  --achieve-red-600-contrast: var(--light-primary-text);
+  --achieve-red-700-contrast: var(--light-primary-text);
+  --achieve-red-800-contrast: var(--light-primary-text);
+  --achieve-red-900-contrast: var(--light-primary-text);
+  --achieve-red-A100-contrast: var(--dark-primary-text);
+  --achieve-red-A200-contrast: var(--light-primary-text);
+  --achieve-red-A400-contrast: var(--light-primary-text);
+  --achieve-red-A700-contrast: var(--light-primary-text);
+}

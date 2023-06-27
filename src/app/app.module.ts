@@ -44,7 +44,16 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { JobComponent } from './job/job.component';
 import { ApplyJobComponent } from './apply-job/apply-job.component';
 import { CompaniesComponent } from './companies/companies.component';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
+//import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { ViewJobsComponent } from './view-jobs/view-jobs.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AboutComponent } from './about/about.component';
+import { CareerComponent } from './career/career.component';
+import { HowDoesItWorksComponent } from './how-does-it-works/how-does-it-works.component';
+import { CreateResumeComponent } from './create-resume/create-resume.component';
+import { ViewCandidateProfileComponent } from './view-candidate-profile/view-candidate-profile.component';
+import { SpinnerLoaderComponent } from './spinner-loader/spinner-loader.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +68,14 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     PostJobComponent,
     JobComponent,
     ApplyJobComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    ViewJobsComponent,
+    AboutComponent,
+    CareerComponent,
+    HowDoesItWorksComponent,
+    CreateResumeComponent,
+    ViewCandidateProfileComponent,
+    SpinnerLoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +110,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatProgressSpinnerModule,
     MatGridListModule,
     MatAutocompleteModule,
-    MatCarouselModule
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

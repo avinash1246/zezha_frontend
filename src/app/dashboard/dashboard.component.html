@@ -1,17 +1,11 @@
 <app-sidebar></app-sidebar>
-<!-- <mat-card class="login-card">
-   
-</mat-card> -->
 <!doctype html>
 <html lang="en">
 <head>
 </head>
-<!-- <body style="background: url('/assets/images/dashboard.svg') no-repeat center center fixed; background-size: cover;"> -->
 <body>
 
-  <!-- <mat-card>
-    <img src="assets/images/registrationBackground.png" style="height: 10em;">
-  </mat-card> -->
+
 <mat-card *ngIf="legends" [style.width.px]="cardWidth" [style.height.px]="cardHeight" style="left: 3em;bottom: -3em;  display: flex; justify-content: center; align-items: top;background-color: aliceblue;">
     <mat-card-content style="text-align: center">
         <mat-icon svgIcon="profileCompletion" style="width: 3em; position: relative; left: -0.1em;"></mat-icon>
@@ -28,78 +22,35 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card [style.width.px]="cardWidth1" [style.height.px]="cardHeight1" style="left: 3em;bottom: -7em;  display: flex; justify-content: center; align-items: top;background-color: beige;" >
+<mat-card [style.width.px]="cardWidth1" [style.height.px]="cardHeight1" style="left: 3em;bottom: -7em;  display: flex; justify-content: center; align-items: top;background-color: beige;" *ngIf="legends">
     <mat-card-content style="text-align: center">
-        <mat-list *ngIf="legends">
+        <mat-list >
             <mat-list-item style="top: -10px;cursor:pointer;" routerLink="/job"><mat-icon svgIcon="jobs" style="font-size: 2em;"></mat-icon> Jobs</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item style="top: 10px;cursor:pointer;" routerLink="/companies"><mat-icon svgIcon="companies" style="font-size: 2em;"></mat-icon> Companies</mat-list-item>
-            <!-- <mat-divider></mat-divider>
-            <mat-list-item>Item 3</mat-list-item> -->
         </mat-list>
     </mat-card-content>
 </mat-card>
 
-<table class="wide-table" *ngIf="heads">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>Employer Details</th>
-        <th>Experience Details</th>
-        <th>Skill Details</th>
-        <th>Other Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of list; let i = index">
-        <td>{{i+1}}</td>
-        <td ><h5><b>Name : </b>{{item.firstName}} {{item.lastName}}</h5><br>
-             <h5><b>Email : </b>{{item.email}}</h5><br>
-             <h5><b>Mobile : </b>{{item.mobileNo}}</h5><br>
-             <h5><b>Gender : </b>{{item.gender}}</h5><br>
-             <h5><b>DOB : </b>{{item.dob}}</h5><br>
-             <h5><b>Address : </b>{{item.cur_address}} ,{{item.cur_city}} ,{{item.cur_state}} - {{item.cur_pincode}}</h5><br>
-             <h5><b>Work Status : </b>{{item.workStatus}}</h5><br>
-        </td>
-        <td ><h5><b>Industry Type : </b>{{item.industry_type}}</h5><br>
-            <h5><b>Current Company name : </b>{{item.cur_office}}</h5><br>
-            <h5><b>Designation : </b>{{item.cur_profile}}</h5><br>
-            <h5><b>Technology Used : </b>{{item.cur_tech}}</h5><br>
-            <h5><b>Notice Period : </b>{{item.notice_period}}</h5><br>
-            <h5><b>Employment Type : </b>{{item.employment_type}}</h5>
-       </td>
-        <td style="background-color: rgb(195, 175, 145);text-align: center;"><h5>{{item.skillDetails}}</h5></td>
-        <td>
-          <h5><b>Preferred Location : </b>{{item.preferredLocation}}</h5><br>
-          <button mat-raised-button style="background-color: rgba(0, 0, 0, 0.858);color: white;" type="submit" mat-raised-button
-          matTooltip="Click for more Details about {{item.firstName}} {{item.lastName}}"
-          aria-label="Button that displays a tooltip when focused or hovered over" routerLink="/moreDetails" routerLinkActive="active"
-          [queryParams]="{ mobileNo: item.mobileNo }">More Details </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<mat-card [style.width.px]="cardWidth1" [style.height.px]="cardHeight2" style="left: 3em;bottom: -7em;  display: flex; justify-content: center; align-items: top;background-color: beige;" *ngIf="heads">
+  <mat-card-content style="text-align: center">
+      <mat-list >
+          <mat-list-item style="top: -10px;cursor:pointer;" routerLink="/viewProfile"><mat-icon svgIcon="jobs" style="font-size: 2em;"></mat-icon> Candidate Profile</mat-list-item>
+      </mat-list>
+  </mat-card-content>
+</mat-card>
 
-  <!-- <div style="width: 100%; height: 1500px;position: relative;left: 36em;top: -16em;">
-    <mat-carousel [autoplay]="true" [interval]="5000" style="width: 60em;">
-      <mat-carousel-slide *ngFor="let item of carouselItems">
-        <img src="{{ item }}" alt="Carousel slide {{ item }}">
-      </mat-carousel-slide>
-    </mat-carousel>
-  </div> -->
+<div *ngIf="legends">
+  <input type="text" placeholder="Search Here..." style="position: relative; top: -15em; left: 23em; width: 62em;"><button mat-raised-button color="primary" type="submit" style="position: relative; left: 368px; top: -240px;">Search</button>
 
-  <!-- <div style=" height: 9em; width: 0em; position: relative; left: 36em; top: -16em;">
-    <mat-carousel [autoplay]="true" [interval]="5000" style="width: 60em;">
-      <mat-carousel-slide *ngFor="let item of carouselItems">
-        <img src="{{ item }}" alt="Carousel slide {{ item }}" style="object-fit: cover; width: 100%; height: 100%;">
-      </mat-carousel-slide>
-    </mat-carousel>
-  </div> -->
-
-
-
+<mat-card style="background-color: orange;width: 76em; position: relative; left: 26em; top: -15em; height: 6em;">
+  <h1 style="color: white;">Create Your Resume in Few Minutes</h1>
+  <p style="color: white;">Highlight your application and stand out from rest of the applicants</p>
+  <button mat-raised-button color="primary" type="submit" style="position: relative; left: 65em; top: -4em;" routerLink="/createResume" routerLinkActive="active" target="_blank">Create Resume</button>
+</mat-card>
+</div>
 
   <app-footer></app-footer>
 </body>
 </html>
-<!-- <mat-spinner></mat-spinner> -->
+<app-spinner-loader [isLoading]="isLoading"></app-spinner-loader>

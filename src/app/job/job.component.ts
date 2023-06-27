@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ZezhaService } from '../service/zezha-service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-job',
@@ -8,23 +11,43 @@ import { ZezhaService } from '../service/zezha-service';
 })
 export class JobComponent implements OnInit {
 
-  constructor(private service:ZezhaService) { }
+  constructor( private service:ZezhaService, private route: ActivatedRoute,private _snackBar: MatSnackBar,private router: Router) { }
 
   list!:any;
+  id!: string;
+  message!: string;
+  isLoading=true;
 
   ngOnInit(): void {
-    this.service.displayJobs().subscribe(data=>{
-      console.log(data);
-      this.list = data;
-    });
+    if(sessionStorage.getItem("name")!=null){
+      this.service.displayJobs().subscribe(data=>{
+        console.log(data);
+        this.isLoading = false;
+        this.list = data;
+      });
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
   }
 
-  // contents = [
-  //   { title: 'Title 1', description: 'Description 1' },
-  //   { title: 'Title 2', description: 'Description 2' },
-  //   { title: 'Title 3', description: 'Description 3' },
-  //   { title: 'Title 4', description: 'Description 4' },
-  //   { title: 'Title 5', description: 'Description 5' }
-  // ];
+
+  myClickFunction(event: any, jobId: any){
+    const id =jobId;
+    const username = sessionStorage.getItem('username');
+    console.log(id);
+    console.log(username);
+    const applyJob = {
+      id: id,
+      username : username
+    };
+    console.log(applyJob);
+    this.service.ApplyJob(applyJob).subscribe(data1=>{
+      console.log(data1);
+      this.isLoading = false;
+      this.message = data1.message;
+      this._snackBar.open(this.message, 'Dismiss');
+    });
+  }
 
 }

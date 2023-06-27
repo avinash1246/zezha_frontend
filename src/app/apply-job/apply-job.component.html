@@ -34,6 +34,7 @@
     </mat-card>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" type="submit" style="position: relative; left: 0.9em; width: 59em;background: darkblue;">Apply Job</button>
+    <button mat-raised-button color="primary" type="submit" style="position: relative; left: 0.9em; width: 59em;background: darkblue;" (click)="myClickFunction($event)">Apply Job</button>
   </mat-card-actions>
 </mat-card>
+<app-spinner-loader [isLoading]="isLoading"></app-spinner-loader>

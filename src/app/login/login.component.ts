@@ -12,7 +12,7 @@ import { ZezhaService } from '../service/zezha-service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  isLoading = true;
   constructor(private service:ZezhaService,private router: Router,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer) {
       this.matIconRegistry.addSvgIcon(
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = false;
   }
 
   form: FormGroup= new FormGroup({

@@ -479,8 +479,12 @@
                       <mat-form-field class="form-group" style="left: 22.5em;">
                         <mat-label>Notice Period</mat-label>
                         <mat-select required  formControlName="notice_period">
+                          <mat-option value="Immediate Joiner">Immediate Joiner</mat-option>
+                          <mat-option value="15 Days">15 Days</mat-option>
+                          <mat-option value="1 Months">1 Months</mat-option>
                           <mat-option value="2 Months">2 Months</mat-option>
                           <mat-option value="3 Months">3 Months</mat-option>
+                          <mat-option value="Above 3 Months">Above 3 Months</mat-option>
                         </mat-select>
                       </mat-form-field>
     
@@ -734,10 +738,12 @@
                   <div style="position: relative; top: -3em;color: mediumblue;">
                     <button mat-button matStepperPrevious>Back</button>
                     <!-- <button mat-button (click)="stepper.reset()">Finish</button> -->
-                    <button mat-button routerLink="/dashboard" routerLinkActive="active">Finish</button>
+                    <button mat-button (click)="openSnackBar('Profile Updated Successful', 'Dismiss')">Finish</button>
                   </div>
                 </mat-card-content>
               </mat-card>
             </form>
             </mat-step>
   </mat-horizontal-stepper>
+
+  <app-spinner-loader [isLoading]="isLoading"></app-spinner-loader>

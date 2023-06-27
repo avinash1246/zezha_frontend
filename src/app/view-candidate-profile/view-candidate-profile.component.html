@@ -1,0 +1,50 @@
+<app-sidebar></app-sidebar>
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+<body>
+<table class="wide-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Employer Details</th>
+        <th>Experience Details</th>
+        <th>Skill Details</th>
+        <th>Other Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list; let i = index">
+        <td>{{i+1}}</td>
+        <td ><h5><b>Name : </b>{{item.firstName}} {{item.lastName}}</h5><br>
+             <h5><b>Email : </b>{{item.email}}</h5><br>
+             <h5><b>Mobile : </b>{{item.mobileNo}}</h5><br>
+             <h5><b>Gender : </b>{{item.gender}}</h5><br>
+             <h5><b>DOB : </b>{{item.dob}}</h5><br>
+             <h5><b>Address : </b>{{item.cur_address}} ,{{item.cur_city}} ,{{item.cur_state}} - {{item.cur_pincode}}</h5><br>
+             <h5><b>Work Status : </b>{{item.workStatus}}</h5><br>
+        </td>
+        <td ><h5><b>Industry Type : </b>{{item.industry_type}}</h5><br>
+            <h5><b>Current Company name : </b>{{item.cur_office}}</h5><br>
+            <h5><b>Designation : </b>{{item.cur_profile}}</h5><br>
+            <h5><b>Technology Used : </b>{{item.cur_tech}}</h5><br>
+            <h5><b>Notice Period : </b>{{item.notice_period}}</h5><br>
+            <h5><b>Employment Type : </b>{{item.employment_type}}</h5>
+       </td>
+        <td style="background-color: rgb(195, 175, 145);text-align: center;"><h5>{{item.skillDetails}}</h5></td>
+        <td>
+          <h5><b>Preferred Location : </b>{{item.preferredLocation}}</h5><br>
+          <button mat-raised-button style="background-color: rgba(0, 0, 0, 0.858);color: white;" type="submit" mat-raised-button
+          matTooltip="Click for more Details about {{item.firstName}} {{item.lastName}}"
+          aria-label="Button that displays a tooltip when focused or hovered over" routerLink="/moreDetails" routerLinkActive="active"
+          [queryParams]="{ mobileNo: item.mobileNo }">More Details </button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<app-footer></app-footer>
+</body>
+</html>
+<app-spinner-loader [isLoading]="isLoading"></app-spinner-loader>
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,7 +11,7 @@ import { ZezhaService } from '../service/zezha-service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  isLoading=true;
   constructor(private service:ZezhaService,private router: Router,private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer) { 
       this.matIconRegistry.addSvgIcon(
@@ -44,18 +44,22 @@ export class DashboardComponent implements OnInit {
 
     
   ngOnInit(): void {
-    this.name = sessionStorage.getItem("name");
-    this.loginType = sessionStorage.getItem("loginType");
-    if(this.loginType=='legends'){
-      this.legends = 'legends';
+    if(sessionStorage.getItem("name")!=null){
+      this.name = sessionStorage.getItem("name");
+      this.loginType = sessionStorage.getItem("loginType");
+      if(this.loginType=='legends'){
+        this.legends = 'legends';
+      }else{
+        this.heads = 'heads';
+      }
+      this.service.displayLegends().subscribe(data=>{
+        this.isLoading = false;
+        console.log(data);
+        this.list = data;
+      });
     }else{
-      this.heads = 'heads';
+      this.router.navigate(['/login']);
     }
-    this.service.displayLegends().subscribe(data=>{
-      console.log(data);
-      this.list = data;
-    });
-
   }
 
   cardWidth = 200;
@@ -69,6 +73,7 @@ export class DashboardComponent implements OnInit {
 
   cardWidth1 = 200;
   cardHeight1 = 116;
+  cardHeight2 = 41;
 
   // Update the width and height properties of the card
   updateCardSize1(newWidth: number, newHeight: number) {

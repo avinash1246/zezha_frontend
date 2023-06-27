@@ -102,25 +102,6 @@
                   </div>
               </div>
 
-              <!-- <mat-form-field class="example-chip-list" mat-raised-button
-              matTooltip="Click for more Skills"
-              aria-label="Button that displays a tooltip when focused or hovered over" class="form-group">
-                <mat-label>Location</mat-label>
-                <mat-hint>Specify the Locations and press enter or comma(,) to enter more</mat-hint>
-                <mat-chip-list #chipList aria-label="Fruit selection">
-                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                           [removable]="removable" (removed)="remove1(location)"  formControlName="location">
-                    {{fruit.name}}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                  <input placeholder="Add Skills..."
-                         [matChipInputFor]="chipList"
-                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                         [matChipInputAddOnBlur]="addOnBlur"
-                         (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-              </mat-form-field> -->
-
               <mat-form-field class="form-group">
                 <input matInput placeholder="Industry" required  formControlName="industry">
               </mat-form-field>
@@ -166,25 +147,6 @@
                 <input matInput placeholder="Number of Vacancies" required  formControlName="vacancies">
               </mat-form-field>
 
-              <!-- <mat-form-field class="example-chip-list" mat-raised-button
-              matTooltip="Click for more Skills"
-              aria-label="Button that displays a tooltip when focused or hovered over" class="form-group">
-                <mat-label>Education Qualification</mat-label>
-                <mat-hint>Specify the Education Qualification and press enter or comma(,) to enter more</mat-hint>
-                <mat-chip-list #chipList aria-label="Fruit selection">
-                  <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable1"
-                           [removable]="removable1" (removed)="remove(fruit)" formControlName="eduQualification">
-                    {{fruit.name}}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                  <input placeholder="Add Skills..."
-                         [matChipInputFor]="chipList"
-                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                         [matChipInputAddOnBlur]="addOnBlur"
-                         (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-              </mat-form-field>  -->
-
               <mat-form-field class="form-group">
                 <input matInput placeholder="company Name" required  formControlName="companyName">
               </mat-form-field>
@@ -204,7 +166,7 @@
                 <input type="file" class="upload-input" (change)="onFileSelected1($event)">
                 <!-- <button mat-raised-button color="primary" class="upload-button" >Upload</button> -->
               </div>
-
+              
               <button mat-raised-button color="primary" type="submit">Submit</button>
               <!-- <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Job Posted', 'Dismiss')">Submit</button> -->
             </div>
@@ -215,3 +177,4 @@
   </div>
 </body>
 </html>
+<app-spinner-loader [isLoading]="isLoading"></app-spinner-loader>

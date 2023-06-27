@@ -8,6 +8,7 @@ import { UpdateProfile } from '../model/updateProfile';
 import { ZezhaService } from '../service/zezha-service';
 import { bulkdatas } from '../utils/bulkdatas';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface Fruit {
   name: string;
@@ -21,8 +22,6 @@ export interface Fruit {
 
 
 export class UpdateProfileComponent implements OnInit {
-  //[x: string]: any;
-
   myClass!: bulkdatas;
   formGroup: any;
   selectedState: any;
@@ -30,9 +29,10 @@ export class UpdateProfileComponent implements OnInit {
   formGroups: any;
   editform1:UpdateProfile=new UpdateProfile();
   file: File | undefined;
+  isLoading=true;
 
-  constructor(private service:ZezhaService,private router: Router,public dialog: MatDialog,
-    private http: HttpClient) {  }
+  constructor(private _snackBar: MatSnackBar,private service:ZezhaService,private router: Router,public dialog: MatDialog,
+  private http: HttpClient) {  }
   isLinear = false;
   listval:any;
   selectedType: string = '';
@@ -42,19 +42,15 @@ export class UpdateProfileComponent implements OnInit {
   pgdegrees!:any;
   citiesList!:any;
   state!:any;
-  //cities!:any;
   selectedCities!:any;
   editformlist: any;
   value: any;
   value1: any;
   step = 0;
-
   imageFile!: File;
   pdfFile!: File;
   imageUrl!: string;
   pdfUrl!: string;
-
-
 
   setStep(index: number) {
     this.step = index;
@@ -69,28 +65,121 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.myClass = new bulkdatas();
-    var activeObj3 = {
-      "username" : sessionStorage.getItem('username')
-    }
-    var json = JSON.stringify(activeObj3);
-    this.service.ExistingDetail(JSON.parse(json)).subscribe(data=>{
-      console.log(data.workStatus);
-      const dobParts = data.dob.split('-');
-      const dobISO = `${dobParts[2]}-${dobParts[1]}-${dobParts[0]}`;
-      this.firstFormGroup.get('firstName')?.patchValue(data.firstName);
-      this.firstFormGroup.get('lastName')?.patchValue(data.lastName);
-      this.firstFormGroup.get('mobileNo')?.patchValue(data.mobileNo);
-      this.firstFormGroup.get('email')?.patchValue(data.email);
-      this.firstFormGroup.get('dob')?.patchValue(dobISO);
-      this.firstFormGroup.get('gender')?.patchValue(data.gender);
-      this.firstFormGroup.get('workStatus')?.patchValue(data.workStatus);
-      if(data.workStatus=== 'experienced'){
-        this.selectedType ='experienced'
-      }else{
-        this.selectedType ='fresher'
+    if(sessionStorage.getItem("name")!=null){
+      this.myClass = new bulkdatas();
+      var activeObj3 = {
+        "username" : sessionStorage.getItem('username')
       }
-    });
+      var json = JSON.stringify(activeObj3);
+      this.service.ExistingDetail(JSON.parse(json)).subscribe(data=>{
+        this.isLoading = false;
+        console.log(data.workStatus);
+        const dobParts = data.dob.split('-');
+        const dobISO = `${dobParts[2]}-${dobParts[1]}-${dobParts[0]}`;
+        this.firstFormGroup.get('firstName')?.patchValue(data.firstName);
+        this.firstFormGroup.get('lastName')?.patchValue(data.lastName);
+        this.firstFormGroup.get('mobileNo')?.patchValue(data.mobileNo);
+        this.firstFormGroup.get('email')?.patchValue(data.email);
+        this.firstFormGroup.get('dob')?.patchValue(dobISO);
+        this.firstFormGroup.get('gender')?.patchValue(data.gender);
+        this.firstFormGroup.get('workStatus')?.patchValue(data.workStatus);
+        if(data.workStatus=== 'experienced'){
+          this.selectedType ='experienced'
+        }else{
+          this.selectedType ='fresher'
+        }
+      });
+
+      this.service.ExistingData(JSON.parse(json)).subscribe(data=>{
+        this.isLoading = false;
+        console.log(data);
+        this.firstFormGroup.get('employment_type')?.patchValue(data.employment_type);
+        this.firstFormGroup.get('industry_type')?.patchValue(data.industry_type);
+        this.firstFormGroup.get('expected_salary')?.patchValue(data.expected_salary);
+        this.firstFormGroup.get('current_salary')?.patchValue(data.current_salary);
+        this.firstFormGroup.get('preferredLocation')?.patchValue(data.preferredLocation);
+
+        this.secondFormGroup.get('cur_address')?.patchValue(data.cur_address);
+        this.secondFormGroup.get('cur_state')?.patchValue(data.cur_state);
+        this.secondFormGroup.get('cur_city')?.patchValue(data.cur_city);
+        this.secondFormGroup.get('cur_pincode')?.patchValue(data.cur_pincode);
+        this.secondFormGroup.get('per_address')?.patchValue(data.per_address);
+        this.secondFormGroup.get('per_state')?.patchValue(data.per_state);
+        this.secondFormGroup.get('per_city')?.patchValue(data.per_city);
+        this.secondFormGroup.get('per_pincode')?.patchValue(data.per_pincode);
+
+        const eduDetails = JSON.parse(data.educationDetails);
+        this.thirdFormGroup.get('tenth_school')?.patchValue(eduDetails["Class X Details"]["schoolName"]);
+        this.thirdFormGroup.get('tenth_board')?.patchValue(eduDetails["Class X Details"]["board"]);
+        this.thirdFormGroup.get('tenth_medium')?.patchValue(eduDetails["Class X Details"]["medium"]);
+        this.thirdFormGroup.get('tenth_marks')?.patchValue(eduDetails["Class X Details"]["marks"]);
+        this.thirdFormGroup.get('tenth_from')?.patchValue(eduDetails["Class X Details"]["from"]);
+        this.thirdFormGroup.get('tenth_to')?.patchValue(eduDetails["Class X Details"]["to"]);
+        this.thirdFormGroup.get('twelth_name')?.patchValue(eduDetails["Class XII Details"]["schoolName"]);
+        this.thirdFormGroup.get('twelth_board')?.patchValue(eduDetails["Class XII Details"]["board"]);
+        this.thirdFormGroup.get('twelth_medium')?.patchValue(eduDetails["Class XII Details"]["medium"]);
+        this.thirdFormGroup.get('twelth_mark')?.patchValue(eduDetails["Class XII Details"]["marks"]);
+        this.thirdFormGroup.get('twelth_from')?.patchValue(eduDetails["Class XII Details"]["from"]);
+        this.thirdFormGroup.get('twelth_to')?.patchValue(eduDetails["Class XII Details"]["to"]);
+        this.thirdFormGroup.get('ug_college')?.patchValue(eduDetails["UG Details"]["collegeName"]);
+        this.thirdFormGroup.get('ug_degree')?.patchValue(eduDetails["UG Details"]["degree"]);
+        this.thirdFormGroup.get('ug_dept')?.patchValue(eduDetails["UG Details"]["department"]);
+        this.thirdFormGroup.get('ug_mark')?.patchValue(eduDetails["UG Details"]["marks"]);
+        this.thirdFormGroup.get('ug_from')?.patchValue(eduDetails["UG Details"]["from"]);
+        this.thirdFormGroup.get('ug_to')?.patchValue(eduDetails["UG Details"]["to"]);
+        this.thirdFormGroup.get('pg_college')?.patchValue(eduDetails["PG Details"]["collegeName"]);
+        this.thirdFormGroup.get('pg_degree')?.patchValue(eduDetails["PG Details"]["degree"]);
+        this.thirdFormGroup.get('pg_dept')?.patchValue(eduDetails["PG Details"]["department"]);
+        this.thirdFormGroup.get('pg_mark')?.patchValue(eduDetails["PG Details"]["marks"]);
+        this.thirdFormGroup.get('pg_from')?.patchValue(eduDetails["PG Details"]["from"]);
+        this.thirdFormGroup.get('pg_to')?.patchValue(eduDetails["PG Details"]["to"]);
+        this.thirdFormGroup.get('phd_college')?.patchValue(eduDetails["PHD Details"]["collegeName"]);
+        this.thirdFormGroup.get('phd_degree')?.patchValue(eduDetails["PHD Details"]["degree"]);
+        this.thirdFormGroup.get('phd_dept')?.patchValue(eduDetails["PHD Details"]["department"]);
+        this.thirdFormGroup.get('phd_marks')?.patchValue(eduDetails["PHD Details"]["marks"]);
+        this.thirdFormGroup.get('phd_from')?.patchValue(eduDetails["PHD Details"]["from"]);
+        this.thirdFormGroup.get('phd_to')?.patchValue(eduDetails["PHD Details"]["to"]);
+
+        const empDetails = JSON.parse(data.experienceDetails);
+        this.forthFormGroup.get('cur_office')?.patchValue(empDetails["Current Employment Details"]["currentCompanyName"]);
+        this.forthFormGroup.get('cur_profile')?.patchValue(empDetails["Current Employment Details"]["currentDesignation"]);
+        this.forthFormGroup.get('cur_tech')?.patchValue(empDetails["Current Employment Details"]["tech used"]);
+        this.forthFormGroup.get('cur_working')?.patchValue(empDetails["Current Employment Details"]["cur_working_status"]);
+        this.forthFormGroup.get('notice_period')?.patchValue(empDetails["Current Employment Details"]["Notice Period"]);
+        this.forthFormGroup.get('cur_from')?.patchValue(empDetails["Current Employment Details"]["working from"]);
+        this.forthFormGroup.get('cur_to')?.patchValue(empDetails["Current Employment Details"]["working to"]);
+        this.forthFormGroup.get('emp1_office')?.patchValue(empDetails["Employment1 Details"]["currentCompanyName"]);
+        this.forthFormGroup.get('emp1_profile')?.patchValue(empDetails["Employment1 Details"]["currentDesignation"]);
+        this.forthFormGroup.get('emp1_tech')?.patchValue(empDetails["Employment1 Details"]["tech used"]);
+        this.forthFormGroup.get('emp1_from')?.patchValue(empDetails["Employment1 Details"]["working from"]);
+        this.forthFormGroup.get('emp1_to')?.patchValue(empDetails["Employment1 Details"]["working till"]);
+        this.forthFormGroup.get('emp2_office')?.patchValue(empDetails["Employment2 Details"]["currentCompanyName"]);
+        this.forthFormGroup.get('emp2_profile')?.patchValue(empDetails["Employment2 Details"]["currentDesignation"]);
+        this.forthFormGroup.get('emp2_tech')?.patchValue(empDetails["Employment2 Details"]["tech used"]);
+        this.forthFormGroup.get('emp2_from')?.patchValue(empDetails["Employment2 Details"]["working from"]);
+        this.forthFormGroup.get('emp2_to')?.patchValue(empDetails["Employment2 Details"]["working till"]);
+        this.forthFormGroup.get('emp3_office')?.patchValue(empDetails["Employment3 Details"]["currentCompanyName"]);
+        this.forthFormGroup.get('emp3_profile')?.patchValue(empDetails["Employment3 Details"]["currentDesignation"]);
+        this.forthFormGroup.get('emp3_tech')?.patchValue(empDetails["Employment3 Details"]["tech used"]);
+        this.forthFormGroup.get('emp3_from')?.patchValue(empDetails["Employment3 Details"]["working from"]);
+        this.forthFormGroup.get('emp3_to')?.patchValue(empDetails["Employment3 Details"]["working till"]);
+        this.forthFormGroup.get('emp4_office')?.patchValue(empDetails["Employment4 Details"]["currentCompanyName"]);
+        this.forthFormGroup.get('emp4_profile')?.patchValue(empDetails["Employment4 Details"]["currentDesignation"]);
+        this.forthFormGroup.get('emp4_tech')?.patchValue(empDetails["Employment4 Details"]["tech used"]);
+        this.forthFormGroup.get('emp4_from')?.patchValue(empDetails["Employment4 Details"]["working from"]);
+        this.forthFormGroup.get('emp4_to')?.patchValue(empDetails["Employment4 Details"]["working till"]);
+
+        const projDetails = JSON.parse(data.projectDetails);
+        this.fifthFormGroup.get('proj_title')?.patchValue(projDetails["projectTitle"]);
+        this.fifthFormGroup.get('proj_desc')?.patchValue(projDetails["projectDescription"]);
+
+        this.sixthFormGroup.get('about_yourself')?.patchValue(data.aboutYourself);
+        
+      });
+    }
+    else{
+      this.router.navigate(['/login']);
+    }
   }
 
   callMyClass(): void {
@@ -626,6 +715,7 @@ export class UpdateProfileComponent implements OnInit {
     console.log(JSON.stringify(this.value))
     this.service.UpdateProfile(JSON.parse(this.value)).subscribe(data=>{
       console.log(data);
+      this.isLoading = false;
     })
   }
 
@@ -668,22 +758,32 @@ export class UpdateProfileComponent implements OnInit {
   // }
 
   onFileSelected(event: any) {
+    var name:any;
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
+    if(sessionStorage.getItem('username')!=null){
+      name =sessionStorage.getItem('username');
+    }
+    formData.append('myString', name);
     this.uploadImage(formData);
   }
 
   uploadImage(formData: FormData) {
-    this.http.post('http://localhost:8081/zezha/uploadImage', formData).subscribe((response: any) => {
+    this.http.post('http://localhost:8081/zezha/uploadImageFile', formData).subscribe((response: any) => {
       console.log(response); // Handle the response from the server
     });
   }
 
   onFileSelected1(event: any) {
+    var name:any;
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('resume', file);
+    if(sessionStorage.getItem('username')!=null){
+      name =sessionStorage.getItem('username');
+      formData.append('myString', name);
+    }
     this.uploadImage1(formData);
   }
 
@@ -700,6 +800,10 @@ export class UpdateProfileComponent implements OnInit {
         error => console.log(error)
       );
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
 

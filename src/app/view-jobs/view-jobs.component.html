@@ -1,0 +1,41 @@
+<app-sidebar></app-sidebar>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Posting</title>
+
+</head>
+<body>
+
+	<div class="container-with-padding">
+		<ng-container *ngFor="let content of jobDetails">
+			<mat-card style="background-color: #c599c8; width: 78em; height: 14em;position: relative; bottom: -1em;">
+			<h1>{{ content.jobHeadline }}</h1>
+			<h1>{{ content.companyName }}</h1>
+			<mat-card-subtitle>{{ content.companyAddress }}</mat-card-subtitle>
+			<img src="assets/images/favicon.png" alt="Zezha Logo" style="width: 4em; position: absolute; top: 11em; left: 1em;">
+			<mat-card-content style="position: absolute; top: 4em; left: 15em;">
+				<ul>
+				<li><strong>Key Skills:</strong> {{ content.keySkills }}</li>
+				<li><strong>Experience:</strong> {{ content.minYear }} - {{ content.maxYear }}</li>
+				<li><strong>Salary:</strong> {{ content.minSalary }} - {{ content.maxSalary }}</li>
+				<li><strong>Employment Type:</strong> {{ content.employmentType }}</li>
+				<li><strong>Industry:</strong> {{ content.industry }}</li>
+				<li><strong>Role:</strong> {{ content.functionalArea }}</li>
+				<li><strong>Education Qualification:</strong> {{ content.eduQualification }}</li>
+				</ul>
+			</mat-card-content>
+			<button mat-raised-button color="primary" type="submit" style="position: absolute; bottom: 1em; right: 1em;"
+				(click)="myClickFunction($event, content.jobId)">Apply Now</button>
+			<button mat-button type="button" style="background-color: blueviolet; position: absolute; bottom: 1em; right: 12em; color: aliceblue;"
+				matTooltip="Click for more details about {{ content.jobId }}" aria-label="Button that displays a tooltip when focused or hovered over"
+				routerLink="/applyJob" routerLinkActive="active" [queryParams]="{ id: content.jobId }">More Details</button>
+			</mat-card>
+			<h1></h1>
+		</ng-container>
+		<h1></h1>
+	  </div>
+
+</body>
+</html>
+<app-spinner-loader [isLoading]="isLoading"></app-spinner-loader>
