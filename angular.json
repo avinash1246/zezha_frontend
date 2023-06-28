@@ -120,5 +120,7 @@
       }
     }
   },
-  "defaultProject": "zezha-frontEnd"
+  "cli": {
+    "analytics": "b26644bb-ca86-4dc0-9c6e-fce74adb4692"
+  }
 }

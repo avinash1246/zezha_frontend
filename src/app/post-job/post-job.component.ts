@@ -1,7 +1,7 @@
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormGroup, FormBuilder, UntypedFormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -52,26 +52,26 @@ export class PostJobComponent implements OnInit {
     }
   }
 
-  form:FormGroup=new FormGroup({
-    jobHeadline: new FormControl(''),
-    employmentType: new FormControl(''),
-    jobDescription: new FormControl(''),
-    candidateProfile: new FormControl(''),
-    minYear: new FormControl(''),
-    maxyear: new FormControl(''),
-    minSalary: new FormControl(''),
-    maxSalary: new FormControl(''),
-    location: new FormControl(''),
-    industry: new FormControl(''),
-    functionalArea: new FormControl(''),
-    role: new FormControl(''),
-    eduQualification: new FormControl(''),
-    companyName: new FormControl(''),
-    companyProfile: new FormControl(''),
-    companyAddress: new FormControl(''),
-    vacancies : new FormControl(''),
-    organisationSize: new FormControl(''),
-    organisationType : new FormControl('')
+  form:UntypedFormGroup=new UntypedFormGroup({
+    jobHeadline: new UntypedFormControl(''),
+    employmentType: new UntypedFormControl(''),
+    jobDescription: new UntypedFormControl(''),
+    candidateProfile: new UntypedFormControl(''),
+    minYear: new UntypedFormControl(''),
+    maxyear: new UntypedFormControl(''),
+    minSalary: new UntypedFormControl(''),
+    maxSalary: new UntypedFormControl(''),
+    location: new UntypedFormControl(''),
+    industry: new UntypedFormControl(''),
+    functionalArea: new UntypedFormControl(''),
+    role: new UntypedFormControl(''),
+    eduQualification: new UntypedFormControl(''),
+    companyName: new UntypedFormControl(''),
+    companyProfile: new UntypedFormControl(''),
+    companyAddress: new UntypedFormControl(''),
+    vacancies : new UntypedFormControl(''),
+    organisationSize: new UntypedFormControl(''),
+    organisationType : new UntypedFormControl('')
   })
 
   editForm(editform1:any){

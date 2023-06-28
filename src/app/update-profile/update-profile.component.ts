@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -220,111 +220,111 @@ export class UpdateProfileComponent implements OnInit {
   }
   
 
-  firstFormGroup:FormGroup=new FormGroup({
-    firstName: new FormControl('Avinash'),
-    lastName: new FormControl(''),
-    mobileNo: new FormControl(''),
-    email: new FormControl(''),
-    dob: new FormControl(''),
-    gender: new FormControl(''),
-    workStatus: new FormControl(''),
-    employment_type: new FormControl(''),
-    industry_type: new FormControl(''),
-    expected_salary: new FormControl(''),
-    current_salary: new FormControl(''),
-    preferredLocation: new FormControl('')
+  firstFormGroup:UntypedFormGroup=new UntypedFormGroup({
+    firstName: new UntypedFormControl('Avinash'),
+    lastName: new UntypedFormControl(''),
+    mobileNo: new UntypedFormControl(''),
+    email: new UntypedFormControl(''),
+    dob: new UntypedFormControl(''),
+    gender: new UntypedFormControl(''),
+    workStatus: new UntypedFormControl(''),
+    employment_type: new UntypedFormControl(''),
+    industry_type: new UntypedFormControl(''),
+    expected_salary: new UntypedFormControl(''),
+    current_salary: new UntypedFormControl(''),
+    preferredLocation: new UntypedFormControl('')
   })
 
-  secondFormGroup:FormGroup=new FormGroup({
-    cur_address: new FormControl(''),
-    cur_state: new FormControl(''),
-    cur_city: new FormControl(''),
-    cur_pincode: new FormControl(''),
-    per_address: new FormControl(''),
-    per_state: new FormControl(''),
-    per_city: new FormControl(''),
-    per_pincode: new FormControl(''),
-    same_address:new FormControl('')
+  secondFormGroup:UntypedFormGroup=new UntypedFormGroup({
+    cur_address: new UntypedFormControl(''),
+    cur_state: new UntypedFormControl(''),
+    cur_city: new UntypedFormControl(''),
+    cur_pincode: new UntypedFormControl(''),
+    per_address: new UntypedFormControl(''),
+    per_state: new UntypedFormControl(''),
+    per_city: new UntypedFormControl(''),
+    per_pincode: new UntypedFormControl(''),
+    same_address:new UntypedFormControl('')
   })
 
-  thirdFormGroup:FormGroup=new FormGroup({
-    tenth_school: new FormControl(''),
-    tenth_board: new FormControl(''),
-    tenth_medium: new FormControl(''),
-    tenth_marks: new FormControl(''),
-    tenth_from: new FormControl(''),
-    tenth_to: new FormControl(''),
+  thirdFormGroup:UntypedFormGroup=new UntypedFormGroup({
+    tenth_school: new UntypedFormControl(''),
+    tenth_board: new UntypedFormControl(''),
+    tenth_medium: new UntypedFormControl(''),
+    tenth_marks: new UntypedFormControl(''),
+    tenth_from: new UntypedFormControl(''),
+    tenth_to: new UntypedFormControl(''),
     
-    twelth_name: new FormControl(''),
-    twelth_board: new FormControl(''),
-    twelth_medium: new FormControl(''),
-    twelth_mark: new FormControl(''),
-    twelth_from: new FormControl(''),
-    twelth_to: new FormControl(''),
+    twelth_name: new UntypedFormControl(''),
+    twelth_board: new UntypedFormControl(''),
+    twelth_medium: new UntypedFormControl(''),
+    twelth_mark: new UntypedFormControl(''),
+    twelth_from: new UntypedFormControl(''),
+    twelth_to: new UntypedFormControl(''),
 
-    ug_college: new FormControl(''),
-    ug_degree: new FormControl(''),
-    ug_dept: new FormControl(''),
-    ug_mark: new FormControl(''),
-    ug_from: new FormControl(''),
-    ug_to: new FormControl(''),
+    ug_college: new UntypedFormControl(''),
+    ug_degree: new UntypedFormControl(''),
+    ug_dept: new UntypedFormControl(''),
+    ug_mark: new UntypedFormControl(''),
+    ug_from: new UntypedFormControl(''),
+    ug_to: new UntypedFormControl(''),
 
-    pg_college: new FormControl(''),
-    pg_dept: new FormControl(''),
-    pg_marks: new FormControl(''),
-    pg_degree: new FormControl(''),
-    pg_to: new FormControl(''),
-    pg_from: new FormControl(''),
+    pg_college: new UntypedFormControl(''),
+    pg_dept: new UntypedFormControl(''),
+    pg_marks: new UntypedFormControl(''),
+    pg_degree: new UntypedFormControl(''),
+    pg_to: new UntypedFormControl(''),
+    pg_from: new UntypedFormControl(''),
 
-    phd_college: new FormControl(''),
-    phd_dept: new FormControl(''),
-    phd_marks: new FormControl(''),
-    phd_degree: new FormControl(''),
-    phd_to: new FormControl(''),
-    phd_from: new FormControl(''),
+    phd_college: new UntypedFormControl(''),
+    phd_dept: new UntypedFormControl(''),
+    phd_marks: new UntypedFormControl(''),
+    phd_degree: new UntypedFormControl(''),
+    phd_to: new UntypedFormControl(''),
+    phd_from: new UntypedFormControl(''),
   })
 
-  forthFormGroup:FormGroup=new FormGroup({
-    cur_office: new FormControl(''),
-    cur_profile: new FormControl(''),
-    cur_tech: new FormControl(''),
-    cur_working: new FormControl(''),
-    notice_period: new FormControl(''),
-    cur_from: new FormControl(''),
-    cur_to: new FormControl(''),
+  forthFormGroup:UntypedFormGroup=new UntypedFormGroup({
+    cur_office: new UntypedFormControl(''),
+    cur_profile: new UntypedFormControl(''),
+    cur_tech: new UntypedFormControl(''),
+    cur_working: new UntypedFormControl(''),
+    notice_period: new UntypedFormControl(''),
+    cur_from: new UntypedFormControl(''),
+    cur_to: new UntypedFormControl(''),
 
-    emp1_office: new FormControl(''),
-    emp1_profile: new FormControl(''),
-    emp1_tech: new FormControl(''),
-    emp1_from: new FormControl(''),
-    emp1_to: new FormControl(''),
+    emp1_office: new UntypedFormControl(''),
+    emp1_profile: new UntypedFormControl(''),
+    emp1_tech: new UntypedFormControl(''),
+    emp1_from: new UntypedFormControl(''),
+    emp1_to: new UntypedFormControl(''),
 
-    emp2_office: new FormControl(''),
-    emp2_profile: new FormControl(''),
-    emp2_tech: new FormControl(''),
-    emp2_from: new FormControl(''),
-    emp2_to: new FormControl(''),
+    emp2_office: new UntypedFormControl(''),
+    emp2_profile: new UntypedFormControl(''),
+    emp2_tech: new UntypedFormControl(''),
+    emp2_from: new UntypedFormControl(''),
+    emp2_to: new UntypedFormControl(''),
 
-    emp3_office: new FormControl(''),
-    emp3_prof: new FormControl(''),
-    emp3_tech: new FormControl(''),
-    emp3_from: new FormControl(''),
-    emp3_to: new FormControl(''),
+    emp3_office: new UntypedFormControl(''),
+    emp3_prof: new UntypedFormControl(''),
+    emp3_tech: new UntypedFormControl(''),
+    emp3_from: new UntypedFormControl(''),
+    emp3_to: new UntypedFormControl(''),
 
-    emp4_office: new FormControl(''),
-    emp4_prof: new FormControl(''),
-    emp4_tech: new FormControl(''),
-    emp4_from: new FormControl(''),
-    emp4_to: new FormControl('')
+    emp4_office: new UntypedFormControl(''),
+    emp4_prof: new UntypedFormControl(''),
+    emp4_tech: new UntypedFormControl(''),
+    emp4_from: new UntypedFormControl(''),
+    emp4_to: new UntypedFormControl('')
   })
 
-  fifthFormGroup:FormGroup=new FormGroup({
-    proj_title: new FormControl(''),
-    proj_desc: new FormControl('')
+  fifthFormGroup:UntypedFormGroup=new UntypedFormGroup({
+    proj_title: new UntypedFormControl(''),
+    proj_desc: new UntypedFormControl('')
   })
 
-  sixthFormGroup:FormGroup=new FormGroup({
-    about_yourself: new FormControl('')
+  sixthFormGroup:UntypedFormGroup=new UntypedFormGroup({
+    about_yourself: new UntypedFormControl('')
   })
 
   editForm(editform1:any){
