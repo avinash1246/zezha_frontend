@@ -13,8 +13,11 @@ import { ZezhaService } from '../service/zezha-service';
 })
 export class LoginComponent implements OnInit {
   isLoading = true;
+  //socialAuthService: any;
   constructor(private service:ZezhaService,private router: Router,private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer) {
+    private domSanitizer: DomSanitizer
+    //,private socialAuthService: SocialAuthService
+    ) {
       this.matIconRegistry.addSvgIcon(
         "ZezhaTalent",
         this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/images/ZezhaTalent SVG.svg")
@@ -70,6 +73,13 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
+  // loginWithGoogle(): void {
+  //   console.log(GoogleLoginProvider.PROVIDER_ID)
+  //   this.socialAuthService.signIn('GOOGLE')
+  //   .then(() => this.router.navigate(['dashboard']))
+  //   .catch((error) => console.log(error));
+  // }
 
   get Username(){
     return this.form.get('username');
