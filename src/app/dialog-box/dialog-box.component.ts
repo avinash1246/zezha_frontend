@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import {  FormGroup,  FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Registration } from '../model/registration';
 import { ZezhaService } from '../service/zezha-service';
@@ -20,8 +20,8 @@ export class DialogBoxComponent implements OnInit {
 
   editform1:Registration=new Registration();
   editformlist: any;
-  form:UntypedFormGroup=new UntypedFormGroup({
-    otp: new UntypedFormControl(''),
+  form: FormGroup=new  FormGroup({
+    otp: new  FormControl(''),
   });
 
   editForm(editform1:any){

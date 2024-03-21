@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import {  FormGroup,  FormControl } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
     this.isLoading = false;
   }
 
-  form: UntypedFormGroup= new UntypedFormGroup({
-    username: new UntypedFormControl(''),
-    password: new UntypedFormControl(''),
+  form:  FormGroup= new  FormGroup({
+    username: new  FormControl(''),
+    password: new  FormControl(''),
   });
 
 

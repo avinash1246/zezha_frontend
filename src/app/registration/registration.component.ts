@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import {  FormGroup,  FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -43,18 +43,18 @@ export class RegistrationComponent implements OnInit {
     this.isLoading = false;
   }
 
-  form:UntypedFormGroup=new UntypedFormGroup({
-    loginType: new UntypedFormControl(''),
-    firstName: new UntypedFormControl(''),
-    lastName: new UntypedFormControl(''),
-    mobileNo: new UntypedFormControl(''),
-    email: new UntypedFormControl('', [Validators.required, Validators.email]),
-    dob: new UntypedFormControl(''),
-    gender: new UntypedFormControl(''),
-    workStatus: new UntypedFormControl(''),
-    password: new UntypedFormControl('',[Validators.required, Validators.pattern('((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15})')]),
-    confirmPassword: new UntypedFormControl(''),
-    otp: new UntypedFormControl('')
+  form: FormGroup=new  FormGroup({
+    loginType: new  FormControl(''),
+    firstName: new  FormControl(''),
+    lastName: new  FormControl(''),
+    mobileNo: new  FormControl(''),
+    email: new  FormControl('', [Validators.required, Validators.email]),
+    dob: new  FormControl(''),
+    gender: new  FormControl(''),
+    workStatus: new  FormControl(''),
+    password: new  FormControl('',[Validators.required, Validators.pattern('((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15})')]),
+    confirmPassword: new  FormControl(''),
+    otp: new  FormControl('')
   })
 
   editForm(editform1:any){
